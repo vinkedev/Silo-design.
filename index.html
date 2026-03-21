@@ -1,40 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Test Admin</title>
+    <title>Siloé Design & Communication</title>
     <style>
-        .admin-panel { display: none; background: #f0f0f0; padding: 20px; margin-top: 20px; }
-        .admin-panel.active { display: block; }
-        nav ul { list-style: none; display: flex; gap: 20px; background: #333; padding: 10px; }
+        /* Styles simplifiés pour la lisibilité */
+        body { margin: 0; font-family: Arial, sans-serif; }
+        nav { background: #1e3a5f; padding: 1rem; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; justify-content: center; }
         nav ul li a { color: white; text-decoration: none; cursor: pointer; }
-        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: blue; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; }
+        section { padding: 2rem; text-align: center; }
+        .admin-panel { background: white; border: 1px solid #ccc; padding: 1rem; margin: 1rem auto; max-width: 500px; display: none; }
+        .admin-panel.active { display: block; }
+        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #2c3e50; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; }
     </style>
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="#">Accueil</a></li>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#produits">Produits</a></li>
             <li><a id="admin-menu">Admin</a></li>
         </ul>
     </nav>
-    <div id="adminPanel" class="admin-panel">
-        <h3>Panneau admin</h3>
-        <p>Le panneau s'affiche !</p>
-    </div>
-    <button id="adminFab" class="admin-btn">🔧</button>
+
+    <section id="accueil">
+        <h1>Siloé Design & Communication</h1>
+        <p>Des idées qui se transforment en succès</p>
+    </section>
+
+    <section id="produits">
+        <h2>Nos produits digitaux</h2>
+        <div id="products-container">Chargement...</div>
+        <div id="admin-panel" class="admin-panel">
+            <div id="admin-login">
+                <input type="password" id="admin-password" placeholder="Mot de passe">
+                <button id="login-btn">Se connecter</button>
+            </div>
+            <div id="admin-controls" style="display:none;">
+                <h3>Ajouter un produit</h3>
+                <form id="add-product-form">
+                    <input type="text" id="product-name" placeholder="Nom" required>
+                    <input type="text" id="product-price" placeholder="Prix" required>
+                    <button type="submit">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <button id="admin-fab" class="admin-btn">🔧</button>
 
     <script>
-        function togglePanel() {
-            const panel = document.getElementById('adminPanel');
-            panel.classList.toggle('active');
+        // Configuration Supabase (à remplacer par vos vraies clés)
+        const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const ADMIN_PASSWORD = 'monMotDePasse123';
+        let isAdmin = false;
+
+        // Fonction pour charger les produits
+        async function loadProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = 'Chargement...';
+            try {
+                const { data, error } = await supabase.from('products').select('*');
+                if (error) throw error;
+                if (data.length === 0) {
+                    container.innerHTML = 'Aucun produit.';
+                    return;
+                }
+                container.innerHTML = data.map(p => `<div><strong>${p.name}</strong> - ${p.price}</div>`).join('');
+            } catch(err) {
+                container.innerHTML = 'Erreur de chargement : ' + err.message;
+            }
         }
 
-        document.getElementById('admin-menu').addEventListener('click', function(e) {
+        // Ajouter un produit
+        async function addProduct(e) {
             e.preventDefault();
-            togglePanel();
+            if (!isAdmin) return alert('Non autorisé');
+            const name = document.getElementById('product-name').value;
+            const price = document.getElementById('product-price').value;
+            if (!name || !price) return alert('Nom et prix requis');
+            const { error } = await supabase.from('products').insert([{ name, price }]);
+            if (error) alert('Erreur : ' + error.message);
+            else {
+                alert('Produit ajouté');
+                document.getElementById('add-product-form').reset();
+                loadProducts();
+            }
+        }
+
+        // Connexion admin
+        function loginAdmin() {
+            const pwd = document.getElementById('admin-password').value;
+            if (pwd === ADMIN_PASSWORD) {
+                isAdmin = true;
+                document.getElementById('admin-login').style.display = 'none';
+                document.getElementById('admin-controls').style.display = 'block';
+                alert('Connecté');
+                loadProducts(); // recharge pour afficher boutons supprimer éventuels
+            } else {
+                alert('Mot de passe incorrect');
+            }
+        }
+
+        // Afficher/masquer le panneau
+        function togglePanel() {
+            const panel = document.getElementById('admin-panel');
+            panel.classList.toggle('active');
+            // Si on affiche et pas encore admin, montrer le login
+            if (panel.classList.contains('active') && !isAdmin) {
+                document.getElementById('admin-login').style.display = 'block';
+                document.getElementById('admin-controls').style.display = 'none';
+            } else if (panel.classList.contains('active') && isAdmin) {
+                document.getElementById('admin-login').style.display = 'none';
+                document.getElementById('admin-controls').style.display = 'block';
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            document.getElementById('login-btn').addEventListener('click', loginAdmin);
+            document.getElementById('add-product-form').addEventListener('submit', addProduct);
+            document.getElementById('admin-menu').addEventListener('click', (e) => {
+                e.preventDefault();
+                togglePanel();
+            });
+            document.getElementById('admin-fab').addEventListener('click', togglePanel);
         });
-        document.getElementById('adminFab').addEventListener('click', togglePanel);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>
