@@ -1,22 +1,102 @@
 <!DOCTYPE html>
 <html>
-<head><title>Test panneau</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Test Supabase + Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
 <body>
-<nav>
-  <ul>
-    <li><a id="adminMenu">Admin</a></li>
-  </ul>
-</nav>
-<div id="adminPanel" style="display:none; background:#ddd; padding:10px;">Panneau admin</div>
-<button id="adminFab">🔧</button>
+    <nav>
+        <ul>
+            <li><a id="adminMenu">Admin</a></li>
+        </ul>
+    </nav>
+    <div id="adminPanel" style="display:none; background:#f0f0f0; padding:10px;">
+        <div id="loginArea">
+            <input type="password" id="adminPwd" placeholder="Mot de passe">
+            <button id="loginBtn">Se connecter</button>
+        </div>
+        <div id="adminControls" style="display:none;">
+            <h3>Ajouter produit</h3>
+            <input type="text" id="prodName" placeholder="Nom"><br>
+            <input type="text" id="prodPrice" placeholder="Prix"><br>
+            <button id="addBtn">Ajouter</button>
+        </div>
+    </div>
+    <button id="adminFab">🔧</button>
 
-<script>
-  function togglePanel() {
-    const panel = document.getElementById('adminPanel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-  }
-  document.getElementById('adminMenu').addEventListener('click', togglePanel);
-  document.getElementById('adminFab').addEventListener('click', togglePanel);
-</script>
+    <h2>Produits</h2>
+    <div id="products"></div>
+
+    <script>
+        // Configuration Supabase
+        const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const ADMIN_PASSWORD = 'monMotDePasse123';
+        let isAdmin = false;
+
+        // Charger produits
+        async function loadProducts() {
+            const container = document.getElementById('products');
+            container.innerHTML = 'Chargement...';
+            try {
+                const { data, error } = await supabase.from('products').select('*');
+                if (error) throw error;
+                if (!data || data.length === 0) {
+                    container.innerHTML = 'Aucun produit.';
+                    return;
+                }
+                container.innerHTML = data.map(p => `<div><strong>${p.name}</strong> - ${p.price}</div>`).join('');
+            } catch(err) {
+                container.innerHTML = 'Erreur: ' + err.message;
+                console.error(err);
+            }
+        }
+
+        // Ajouter produit
+        async function addProduct() {
+            if (!isAdmin) { alert('Non autorisé'); return; }
+            const name = document.getElementById('prodName').value.trim();
+            const price = document.getElementById('prodPrice').value.trim();
+            if (!name || !price) { alert('Nom et prix requis'); return; }
+            const { error } = await supabase.from('products').insert([{ name, price }]);
+            if (error) alert('Erreur: ' + error.message);
+            else {
+                alert('Produit ajouté');
+                loadProducts();
+                document.getElementById('prodName').value = '';
+                document.getElementById('prodPrice').value = '';
+            }
+        }
+
+        // Connexion admin
+        function login() {
+            const pwd = document.getElementById('adminPwd').value;
+            if (pwd === ADMIN_PASSWORD) {
+                isAdmin = true;
+                document.getElementById('loginArea').style.display = 'none';
+                document.getElementById('adminControls').style.display = 'block';
+                alert('Connecté');
+            } else {
+                alert('Mot de passe incorrect');
+            }
+        }
+
+        // Affichage/masquage panneau
+        function togglePanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            document.getElementById('loginBtn').addEventListener('click', login);
+            document.getElementById('addBtn').addEventListener('click', addProduct);
+            document.getElementById('adminMenu').addEventListener('click', togglePanel);
+            document.getElementById('adminFab').addEventListener('click', togglePanel);
+        });
+    </script>
 </body>
 </html>
