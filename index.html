@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test simple Supabase</title>
+    <title>Test Supabase</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <button id="test">Tester connexion Supabase</button>
-    <div id="result"></div>
+    <h2>Test de connexion à Supabase</h2>
+    <button id="testBtn">Tester la connexion</button>
+    <div id="resultat" style="margin-top:20px; padding:10px; border:1px solid #ccc;"></div>
 
     <script>
         const supabaseUrl = "https://otdiywrvzappbmjfkkyi.supabase.co";
         const supabaseKey = "sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy";
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        document.getElementById("test").onclick = async () => {
-            const { data, error } = await supabase.from("products").select("*");
-            if (error) {
-                document.getElementById("result").innerHTML = "❌ Erreur : " + error.message;
-            } else {
-                document.getElementById("result").innerHTML = "✅ Connexion OK. Nombre de produits : " + (data ? data.length : 0);
+        document.getElementById("testBtn").onclick = async () => {
+            const div = document.getElementById("resultat");
+            div.innerHTML = "🔄 Tentative de connexion...";
+            try {
+                const { data, error } = await supabase.from("products").select("*");
+                if (error) {
+                    div.innerHTML = "❌ ERREUR : " + error.message;
+                } else {
+                    div.innerHTML = "✅ Connexion réussie !<br>Nombre de produits trouvés : " + (data ? data.length : 0);
+                }
+            } catch(err) {
+                div.innerHTML = "❌ Exception : " + err.message;
             }
         };
     </script>
