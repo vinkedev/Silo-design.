@@ -1,128 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Siloé Design & Communication</title>
+    <title>Test simple Supabase</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        body { font-family: Arial; margin: 20px; }
-        #adminPanel { display: none; background: #f0f0f0; padding: 10px; margin-top: 20px; }
-        .product { border: 1px solid #ccc; padding: 10px; margin: 5px; }
-        button { margin: 5px; }
-    </style>
 </head>
 <body>
-    <nav>
-        <button id="adminMenu">Admin</button>
-    </nav>
-    <div id="adminPanel">
-        <div id="loginArea">
-            <input type="password" id="adminPwd" placeholder="Mot de passe">
-            <button id="loginBtn">Se connecter</button>
-        </div>
-        <div id="adminControls" style="display:none;">
-            <h3>Ajouter produit</h3>
-            <input type="text" id="prodName" placeholder="Nom"><br>
-            <input type="text" id="prodPrice" placeholder="Prix (ex: 19€)"><br>
-            <button id="addBtn">Ajouter</button>
-        </div>
-    </div>
-    <button id="adminFab">🔧</button>
-
-    <h2>Nos produits digitaux</h2>
-    <div id="products"></div>
+    <button id="test">Tester connexion Supabase</button>
+    <div id="result"></div>
 
     <script>
-        // === CONFIGURATION SUPABASE ===
-        const supabaseUrl = 'https://otdiywrvzappbmjfkkyi.supabase.co';
-        const supabaseKey = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
+        const supabaseUrl = "https://otdiywrvzappbmjfkkyi.supabase.co";
+        const supabaseKey = "sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy";
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-        const ADMIN_PASSWORD = 'monMotDePasse123';
-        let isAdmin = false;
 
-        // === CHARGER LES PRODUITS ===
-        async function loadProducts() {
-            const container = document.getElementById('products');
-            container.innerHTML = 'Chargement...';
-            try {
-                const { data, error } = await supabase.from('products').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-                if (!data || data.length === 0) {
-                    container.innerHTML = '<p>Aucun produit pour le moment.</p>';
-                    return;
-                }
-                container.innerHTML = data.map(p => `
-                    <div class="product">
-                        <strong>${escapeHtml(p.name)}</strong> - ${escapeHtml(p.price)}
-                        ${isAdmin ? `<button onclick="deleteProduct('${p.id}')">Supprimer</button>` : ''}
-                    </div>
-                `).join('');
-            } catch (err) {
-                container.innerHTML = `<p style="color:red;">❌ Erreur chargement : ${err.message}</p>`;
-                console.error('loadProducts error:', err);
-            }
-        }
-
-        // === AJOUTER PRODUIT ===
-        async function addProduct() {
-            if (!isAdmin) { alert('Non autorisé'); return; }
-            const name = document.getElementById('prodName').value.trim();
-            const price = document.getElementById('prodPrice').value.trim();
-            if (!name || !price) { alert('Nom et prix requis'); return; }
-            const { error } = await supabase.from('products').insert([{ name, price }]);
+        document.getElementById("test").onclick = async () => {
+            const { data, error } = await supabase.from("products").select("*");
             if (error) {
-                alert('Erreur insertion : ' + error.message);
-                console.error(error);
+                document.getElementById("result").innerHTML = "❌ Erreur : " + error.message;
             } else {
-                alert('Produit ajouté !');
-                document.getElementById('prodName').value = '';
-                document.getElementById('prodPrice').value = '';
-                loadProducts();
+                document.getElementById("result").innerHTML = "✅ Connexion OK. Nombre de produits : " + (data ? data.length : 0);
             }
-        }
-
-        // === SUPPRIMER PRODUIT ===
-        window.deleteProduct = async function(id) {
-            if (!isAdmin) return;
-            if (!confirm('Supprimer ce produit ?')) return;
-            const { error } = await supabase.from('products').delete().eq('id', id);
-            if (error) alert('Erreur suppression : ' + error.message);
-            else { alert('Produit supprimé'); loadProducts(); }
         };
-
-        // === CONNEXION ADMIN ===
-        function login() {
-            const pwd = document.getElementById('adminPwd').value;
-            if (pwd === ADMIN_PASSWORD) {
-                isAdmin = true;
-                document.getElementById('loginArea').style.display = 'none';
-                document.getElementById('adminControls').style.display = 'block';
-                alert('Connecté en tant qu\'administrateur');
-                loadProducts(); // recharge pour afficher les boutons supprimer
-            } else {
-                alert('Mot de passe incorrect');
-            }
-        }
-
-        // === AFFICHER / MASQUER LE PANNEAU ===
-        function togglePanel() {
-            const panel = document.getElementById('adminPanel');
-            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
-        }
-
-        // === INIT ===
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProducts();
-            document.getElementById('loginBtn').addEventListener('click', login);
-            document.getElementById('addBtn').addEventListener('click', addProduct);
-            document.getElementById('adminMenu').addEventListener('click', togglePanel);
-            document.getElementById('adminFab').addEventListener('click', togglePanel);
-        });
     </script>
 </body>
 </html>
