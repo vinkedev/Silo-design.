@@ -18,7 +18,7 @@
         .logo span { color: #3498db; }
         .nav-menu { display: flex; list-style: none; }
         .nav-menu li { margin-left: 30px; }
-        .nav-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; transition: color 0.3s; }
+        .nav-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; transition: color 0.3s; cursor: pointer; }
         .nav-menu a:hover { color: #3498db; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; }
         .hamburger .bar { width: 25px; height: 3px; background: #1e3a5f; margin: 3px 0; transition: 0.3s; }
@@ -102,6 +102,7 @@
                 <li><a href="#produits">Produits</a></li>
                 <li><a href="#support">Écriture & Secrétariat</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a id="admin-menu-btn">Admin</a></li>  <!-- Nouveau bouton Admin dans le menu -->
             </ul>
             <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
         </div>
@@ -167,11 +168,10 @@
     <button id="admin-toggle-btn" class="admin-btn" title="Administration">🔧</button>
 
     <script>
-        // === CONFIGURATION SUPABASE (CORRECTE) ===
+        // === CONFIGURATION SUPABASE ===
         const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
         
-        // Initialisation du client Supabase
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         const ADMIN_PASSWORD = 'monMotDePasse123';  // Changez ce mot de passe si besoin
@@ -290,9 +290,17 @@
             if (addForm) addForm.addEventListener('submit', addProduct);
             else console.error('Formulaire add-product-form introuvable');
             
+            // Bouton admin dans le menu
+            const adminMenuBtn = document.getElementById('admin-menu-btn');
+            if (adminMenuBtn) adminMenuBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // éviter le saut d'ancre
+                toggleAdminPanel();
+            });
+            
+            // Bouton admin flottant (🔧)
             const adminToggle = document.getElementById('admin-toggle-btn');
             if (adminToggle) adminToggle.addEventListener('click', toggleAdminPanel);
-            else console.error('Bouton admin introuvable');
+            else console.error('Bouton admin flottant introuvable');
         });
 
         // Menu mobile
