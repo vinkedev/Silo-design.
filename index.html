@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* Votre CSS identique à celui que vous avez posté */
+        /* Votre CSS existant (inchangé) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -167,20 +167,14 @@
     <button id="admin-toggle-btn" class="admin-btn" title="Administration">🔧</button>
 
     <script>
-        // === CONFIGURATION SUPABASE ===
-        // REMPLACEZ CETTE CLÉ PAR VOTRE VRAIE CLÉ ANON (commence par eyJ...)
+        // === CONFIGURATION SUPABASE (CORRECTE) ===
         const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
-        const SUPABASE_ANON_KEY = 'VOTRE_CLE_ANON_ICI';  // <-- À MODIFIER !!
+        const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
         
-        // Vérification si la clé a été remplacée
-        if (SUPABASE_ANON_KEY === 'VOTRE_CLE_ANON_ICI') {
-            console.error('❌ Vous n’avez pas remplacé la clé anon Supabase. Veuillez le faire dans le code.');
-            alert('Configuration Supabase incomplète : la clé anon n’est pas définie.');
-        }
-        
+        // Initialisation du client Supabase
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        const ADMIN_PASSWORD = 'monMotDePasse123';  // Changez ce mot de passe
+        const ADMIN_PASSWORD = 'monMotDePasse123';  // Changez ce mot de passe si besoin
         let isAdmin = false;
 
         // === CHARGEMENT DES PRODUITS ===
