@@ -1,197 +1,22 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siloé Design & Communication</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: #f4f7fc; }
-        .navbar { position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .logo h2 { font-size: 28px; color: #1e3a5f; }
-        .logo span { color: #3498db; }
-        .nav-menu { display: flex; list-style: none; }
-        .nav-menu li { margin-left: 30px; }
-        .nav-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; cursor: pointer; }
-        .nav-menu a:hover { color: #3498db; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; }
-        .hero { padding: 120px 0 60px; background: linear-gradient(135deg, #eef2f7, #d9e2ef); text-align: center; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section { padding: 80px 0; }
-        .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; color: #1e3a5f; }
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
-        .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .price { font-size: 20px; font-weight: bold; color: #3498db; margin: 10px 0; }
-        .btn-small { background: #3498db; color: #fff; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; }
-        .admin-panel { background: #fff; border-radius: 8px; padding: 20px; margin-top: 30px; display: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .admin-panel.active { display: block; }
-        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #2c3e50; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 20px; cursor: pointer; z-index: 999; }
-        @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .hamburger { display: flex; }
-        }
-    </style>
-</head>
+<html>
+<head><title>Test panneau</title></head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo"><h2>SDC<span>.</span></h2></div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#produits">Produits</a></li>
-                <li><a id="admin-menu-btn">Admin</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
-        </div>
-    </nav>
+<nav>
+  <ul>
+    <li><a id="adminMenu">Admin</a></li>
+  </ul>
+</nav>
+<div id="adminPanel" style="display:none; background:#ddd; padding:10px;">Panneau admin</div>
+<button id="adminFab">🔧</button>
 
-    <section id="accueil" class="hero">
-        <div class="container">
-            <h1>Des idées qui se transforment en succès</h1>
-            <p>Siloé Design & Communication – Agence de communication, formations, créations visuelles et produits digitaux.</p>
-            <a href="#produits" class="btn-small" style="display: inline-block; margin-top: 20px;">Découvrir nos produits</a>
-        </div>
-    </section>
-
-    <section id="produits" class="section">
-        <div class="container">
-            <h2 class="section-title">Nos produits digitaux</h2>
-            <div id="products-container" class="cards-grid">
-                <div>Chargement des produits...</div>
-            </div>
-            <div id="admin-panel" class="admin-panel">
-                <div id="admin-login">
-                    <input type="password" id="admin-password" placeholder="Mot de passe admin">
-                    <button class="btn-small" id="login-btn">Se connecter</button>
-                </div>
-                <div id="admin-controls" style="display: none;">
-                    <h3>Ajouter un produit</h3>
-                    <form id="add-product-form">
-                        <input type="text" id="product-name" placeholder="Nom du produit" required><br><br>
-                        <input type="text" id="product-price" placeholder="Prix (ex: 19,90 €)" required><br><br>
-                        <button type="submit" class="btn-small">Ajouter</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <button id="admin-fab" class="admin-btn">🔧</button>
-
-    <script>
-        // ========== CONFIGURATION ==========
-        const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
-        const ADMIN_PASSWORD = 'monMotDePasse123';
-        let isAdmin = false;
-        
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        
-        // ========== FONCTIONS ==========
-        async function loadProducts() {
-            const container = document.getElementById('products-container');
-            container.innerHTML = '<div>Chargement des produits...</div>';
-            try {
-                const { data, error } = await supabase.from('products').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-                if (!data || data.length === 0) {
-                    container.innerHTML = '<div>Aucun produit disponible.</div>';
-                    return;
-                }
-                container.innerHTML = data.map(product => `
-                    <div class="card">
-                        <h3>${escapeHtml(product.name)}</h3>
-                        <p>${escapeHtml(product.description || '')}</p>
-                        <div class="price">${escapeHtml(product.price)}</div>
-                        ${isAdmin ? `<button class="btn-small" onclick="deleteProduct(${product.id})">Supprimer</button>` : ''}
-                    </div>
-                `).join('');
-            } catch (err) {
-                container.innerHTML = `<div>❌ Erreur: ${err.message}</div>`;
-                console.error(err);
-            }
-        }
-        
-        async function addProduct(e) {
-            e.preventDefault();
-            if (!isAdmin) { alert('Accès non autorisé'); return; }
-            const name = document.getElementById('product-name').value.trim();
-            const price = document.getElementById('product-price').value.trim();
-            if (!name || !price) { alert('Nom et prix requis'); return; }
-            const { error } = await supabase.from('products').insert([{ name, price }]);
-            if (error) alert('Erreur : ' + error.message);
-            else {
-                alert('Produit ajouté');
-                document.getElementById('add-product-form').reset();
-                loadProducts();
-            }
-        }
-        
-        window.deleteProduct = async function(id) {
-            if (!isAdmin) { alert('Non autorisé'); return; }
-            if (confirm('Supprimer ce produit ?')) {
-                const { error } = await supabase.from('products').delete().eq('id', id);
-                if (error) alert('Erreur : ' + error.message);
-                else { alert('Produit supprimé'); loadProducts(); }
-            }
-        };
-        
-        function loginAdmin() {
-            const pwd = document.getElementById('admin-password').value;
-            if (pwd === ADMIN_PASSWORD) {
-                isAdmin = true;
-                document.getElementById('admin-login').style.display = 'none';
-                document.getElementById('admin-controls').style.display = 'block';
-                alert('✅ Connecté en tant qu\'administrateur');
-                loadProducts(); // recharge pour afficher les boutons supprimer
-            } else {
-                alert('Mot de passe incorrect');
-            }
-        }
-        
-        function toggleAdminPanel() {
-            const panel = document.getElementById('admin-panel');
-            panel.classList.toggle('active');
-            if (panel.classList.contains('active')) {
-                if (isAdmin) {
-                    document.getElementById('admin-login').style.display = 'none';
-                    document.getElementById('admin-controls').style.display = 'block';
-                } else {
-                    document.getElementById('admin-login').style.display = 'block';
-                    document.getElementById('admin-controls').style.display = 'none';
-                }
-            }
-        }
-        
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
-        }
-        
-        // ========== INITIALISATION ==========
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProducts();
-            document.getElementById('login-btn').addEventListener('click', loginAdmin);
-            document.getElementById('add-product-form').addEventListener('submit', addProduct);
-            document.getElementById('admin-menu-btn').addEventListener('click', (e) => {
-                e.preventDefault();
-                toggleAdminPanel();
-            });
-            document.getElementById('admin-fab').addEventListener('click', toggleAdminPanel);
-        });
-        
-        // Menu mobile simplifié
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-            });
-        }
-    </script>
+<script>
+  function togglePanel() {
+    const panel = document.getElementById('adminPanel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  }
+  document.getElementById('adminMenu').addEventListener('click', togglePanel);
+  document.getElementById('adminFab').addEventListener('click', togglePanel);
+</script>
 </body>
 </html>
