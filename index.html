@@ -3,95 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siloé Design & Communication - Produits digitaux</title>
+    <title>Siloé Design & Communication</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* Votre CSS existant (inchangé) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; background: #f4f7fc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .navbar { position: fixed; top: 0; width: 100%; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; }
+        .navbar { position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo h2 { font-size: 28px; font-weight: 700; color: #1e3a5f; }
         .logo span { color: #3498db; }
         .nav-menu { display: flex; list-style: none; }
         .nav-menu li { margin-left: 30px; }
-        .nav-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; transition: color 0.3s; cursor: pointer; }
+        .nav-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; cursor: pointer; }
         .nav-menu a:hover { color: #3498db; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; }
-        .hamburger .bar { width: 25px; height: 3px; background: #1e3a5f; margin: 3px 0; transition: 0.3s; }
+        .hamburger .bar { width: 25px; height: 3px; background: #1e3a5f; margin: 3px 0; }
         .hero { padding: 120px 0 60px; background: linear-gradient(135deg, #eef2f7 0%, #d9e2ef 100%); }
         .hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .hero-content h1 { font-size: 48px; margin-bottom: 20px; color: #1e3a5f; line-height: 1.2; }
+        .hero-content h1 { font-size: 48px; margin-bottom: 20px; color: #1e3a5f; }
         .hero-content p { font-size: 18px; margin-bottom: 30px; color: #4a5568; }
-        .btn { display: inline-block; background: #3498db; color: #fff; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s, transform 0.2s; border: none; cursor: pointer; }
+        .btn { display: inline-block; background: #3498db; color: #fff; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
         .btn:hover { background: #1e3a5f; transform: scale(1.05); }
         .hero-image img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .services-overview { padding: 60px 0; background: #fff; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
-        .service-card { padding: 30px 20px; border-radius: 8px; background: #f4f7fc; transition: transform 0.3s, box-shadow 0.3s; }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(52,152,219,0.2); }
+        .service-card { padding: 30px 20px; border-radius: 8px; background: #f4f7fc; transition: 0.3s; }
         .service-card i { font-size: 40px; color: #3498db; margin-bottom: 15px; }
-        .service-card h3 { margin-bottom: 10px; color: #1e3a5f; }
         .section { padding: 80px 0; }
         .bg-light { background: #f4f7fc; }
         .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; color: #1e3a5f; position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: #3498db; margin: 15px auto 0; }
-        .section-content { max-width: 800px; margin: 0 auto; text-align: center; font-size: 18px; color: #4a5568; }
         .stats { display: flex; justify-content: space-around; margin-top: 40px; flex-wrap: wrap; }
         .stat-item h3 { font-size: 36px; color: #3498db; }
-        .stat-item p { color: #4a5568; }
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; position: relative; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(52,152,219,0.15); }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
         .card img { width: 100%; height: 180px; object-fit: cover; }
         .card-body { padding: 20px; }
         .card-body h3 { margin-bottom: 10px; color: #1e3a5f; }
-        .card-body p { color: #4a5568; margin-bottom: 10px; }
         .card .price { font-size: 20px; font-weight: 700; color: #3498db; margin: 10px 0; }
-        .tag { display: inline-block; background: #3498db20; color: #1e3a5f; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
-        .btn-small { display: inline-block; background: #3498db; color: #fff; padding: 8px 20px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: background 0.3s; border: none; cursor: pointer; }
+        .btn-small { display: inline-block; background: #3498db; color: #fff; padding: 8px 20px; border-radius: 30px; text-decoration: none; font-weight: 500; border: none; cursor: pointer; }
         .btn-small:hover { background: #1e3a5f; }
         .btn-danger { background: #e74c3c; margin-left: 10px; }
         .btn-danger:hover { background: #c0392b; }
         .services-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
         .service-block { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .service-block h3 { color: #1e3a5f; margin-bottom: 20px; font-size: 24px; }
-        .service-block i { color: #3498db; margin-right: 10px; }
-        .service-block ul { list-style: none; }
-        .service-block li { margin-bottom: 10px; color: #4a5568; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .contact-info h3 { margin-bottom: 20px; color: #1e3a5f; }
         .contact-info p { margin-bottom: 10px; color: #4a5568; }
         .contact-info i { margin-right: 10px; color: #3498db; }
-        .social-links a { display: inline-block; margin: 20px 10px 0 0; color: #1e3a5f; font-size: 20px; transition: color 0.3s; }
-        .social-links a:hover { color: #3498db; }
         .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; }
-        .contact-form button { width: 100%; }
         footer { background: #1e3a5f; color: #fff; text-align: center; padding: 20px 0; }
-        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #2c3e50; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 20px; cursor: pointer; z-index: 999; opacity: 0.5; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #2c3e50; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 20px; cursor: pointer; z-index: 999; opacity: 0.5; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
         .admin-btn:hover { opacity: 1; }
-        .admin-panel { background: #fff; border-radius: 8px; padding: 20px; margin-top: 30px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
+        .admin-panel { background: #fff; border-radius: 8px; padding: 20px; margin-top: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
         .admin-panel.active { display: block; }
         .login-form { text-align: center; margin-bottom: 20px; }
         .login-form input { padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .admin-form input, .admin-form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+        .admin-form input, .admin-form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: #fff; width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 10px rgba(0,0,0,0.05); }
+            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: #fff; width: 100%; text-align: center; transition: 0.3s; }
             .nav-menu.active { left: 0; }
             .nav-menu li { margin: 15px 0; }
             .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-content h1 { font-size: 36px; }
             .contact-grid, .services-list { grid-template-columns: 1fr; }
-            .stats { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo"><h2>SDC<span>.</span></h2></div>
@@ -102,13 +83,12 @@
                 <li><a href="#produits">Produits</a></li>
                 <li><a href="#support">Écriture & Secrétariat</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a id="admin-menu-btn">Admin</a></li>  <!-- Nouveau bouton Admin dans le menu -->
+                <li><a id="admin-menu-btn">Admin</a></li>
             </ul>
             <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
         </div>
     </nav>
 
-    <!-- Accueil -->
     <section id="accueil" class="hero">
         <div class="container hero-container">
             <div class="hero-content">
@@ -120,24 +100,18 @@
         </div>
     </section>
 
-    <!-- Services aperçu -->
     <section class="services-overview"><div class="container"><div class="services-grid"><div class="service-card"><i class="fas fa-bullhorn"></i><h3>Business</h3><p>Stratégie, branding, campagnes.</p></div><div class="service-card"><i class="fas fa-chalkboard-teacher"></i><h3>Formations</h3><p>Graphisme, vidéo, entrepreneuriat.</p></div><div class="service-card"><i class="fas fa-pen-fancy"></i><h3>Écriture & Secrétariat</h3><p>Rédaction, assistance administrative.</p></div><div class="service-card"><i class="fas fa-download"></i><h3>Produits digitaux</h3><p>E-books, templates, formations.</p></div></div></div></section>
 
-    <!-- Business -->
     <section id="business" class="section"><div class="container"><h2 class="section-title">SDC Business</h2><div class="section-content"><p>Conseil en communication et marketing pour entreprises : stratégie digitale, branding, gestion des réseaux sociaux, campagnes publicitaires et études de marché. Nous vous accompagnons pour développer votre notoriété et atteindre vos objectifs.</p><div class="stats"><div class="stat-item"><h3>50+</h3><p>Clients satisfaits</p></div><div class="stat-item"><h3>100+</h3><p>Projets réalisés</p></div><div class="stat-item"><h3>5 ans</h3><p>d'expérience</p></div></div></div></div></section>
 
-    <!-- Formations -->
     <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid"><div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphisme"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1574717024453-2b5c6b9d7b1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Montage vidéo"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrepreneuriat"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement personnel"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div></div></div></section>
 
-    <!-- Produits digitaux -->
     <section id="produits" class="section">
         <div class="container">
             <h2 class="section-title">Nos produits digitaux</h2>
             <div id="products-container" class="cards-grid">
-                <div style="text-align:center; grid-column:1/-1;">Chargement des produits...</div>
+                <div style="text-align:center;">Chargement des produits...</div>
             </div>
-
-            <!-- Panneau d'administration -->
             <div id="admin-panel" class="admin-panel">
                 <div id="admin-login" class="login-form">
                     <input type="password" id="admin-password" placeholder="Mot de passe admin">
@@ -157,10 +131,8 @@
         </div>
     </section>
 
-    <!-- Écriture & Secrétariat -->
-    <section id="support" class="section bg-light"><div class="container"><h2 class="section-title">Écriture & Secrétariat</h2><div class="services-list"><div class="service-block"><h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3><ul><li>Rédaction web (SEO)</li><li>Articles de blog</li><li>Communiqués de presse</li><li>Interviews & reportages</li><li>Ghostwriting</li></ul></div><div class="service-block"><h3><i class="fas fa-file-alt"></i> Secrétariat</h3><ul><li>Gestion de courrier</li><li>Accueil téléphonique</li><li>Prise de rendez-vous</li><li>Classement & archivage</li><li>Comptabilité simplifiée</li></ul></div></div><div class="section-content" style="margin-top:40px;"><p>Des services sur mesure pour alléger votre quotidien et booster votre communication.</p></div></div></section>
+    <section id="support" class="section bg-light"><div class="container"><h2 class="section-title">Écriture & Secrétariat</h2><div class="services-list"><div class="service-block"><h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3><ul><li>Rédaction web (SEO)</li><li>Articles de blog</li><li>Communiqués de presse</li><li>Interviews & reportages</li><li>Ghostwriting</li></ul></div><div class="service-block"><h3><i class="fas fa-file-alt"></i> Secrétariat</h3><ul><li>Gestion de courrier</li><li>Accueil téléphonique</li><li>Prise de rendez-vous</li><li>Classement & archivage</li><li>Comptabilité simplifiée</li></ul></div></div></div></section>
 
-    <!-- Contact -->
     <section id="contact" class="section"><div class="container"><h2 class="section-title">Contactez-nous</h2><div class="contact-grid"><div class="contact-info"><h3>Siloé Design & Communication</h3><p><i class="fas fa-map-marker-alt"></i> 123 avenue de la Créativité, 75000 Paris</p><p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p><p><i class="fas fa-envelope"></i> contact@siloedesign.com</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"><input type="text" name="nom" placeholder="Votre nom" required><input type="email" name="email" placeholder="Votre email" required><input type="text" name="sujet" placeholder="Sujet"><textarea name="message" rows="5" placeholder="Votre message" required></textarea><button type="submit" class="btn">Envoyer</button></form></div></div></section>
 
     <footer><div class="container"><p>&copy; 2025 Siloé Design & Communication. Tous droits réservés.</p></div></footer>
@@ -168,20 +140,18 @@
     <button id="admin-toggle-btn" class="admin-btn" title="Administration">🔧</button>
 
     <script>
-        // === CONFIGURATION SUPABASE ===
+        // ========== CONFIGURATION SUPABASE ==========
         const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
-        
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        
-        const ADMIN_PASSWORD = 'monMotDePasse123';  // Changez ce mot de passe si besoin
+        const ADMIN_PASSWORD = 'monMotDePasse123';
         let isAdmin = false;
 
-        // === CHARGEMENT DES PRODUITS ===
+        // ========== FONCTIONS PRODUITS ==========
         async function loadProducts() {
             const container = document.getElementById('products-container');
             if (!container) return;
-            container.innerHTML = '<div style="text-align:center;">⏳ Chargement des produits...</div>';
+            container.innerHTML = '<div style="text-align:center;">⏳ Chargement...</div>';
             try {
                 const { data, error } = await supabase.from('products').select('*').order('created_at', { ascending: false });
                 if (error) throw error;
@@ -190,7 +160,7 @@
                     return;
                 }
                 container.innerHTML = data.map(product => `
-                    <div class="card" data-id="${product.id}">
+                    <div class="card">
                         <img src="${product.image_url || 'https://via.placeholder.com/300x180?text=Image'}" alt="${escapeHtml(product.name)}">
                         <div class="card-body">
                             <h3>${escapeHtml(product.name)}</h3>
@@ -202,12 +172,11 @@
                     </div>
                 `).join('');
             } catch (err) {
-                console.error('Erreur chargement produits:', err);
                 container.innerHTML = `<div style="text-align:center;">❌ Erreur: ${err.message}</div>`;
+                console.error(err);
             }
         }
 
-        // === AJOUTER UN PRODUIT ===
         async function addProduct(e) {
             e.preventDefault();
             if (!isAdmin) { alert('Accès non autorisé.'); return; }
@@ -228,7 +197,6 @@
             }
         }
 
-        // === SUPPRIMER UN PRODUIT ===
         window.deleteProduct = async function(id) {
             if (!isAdmin) { alert('Accès non autorisé.'); return; }
             if (confirm('Supprimer ce produit ?')) {
@@ -238,38 +206,34 @@
             }
         };
 
-        // === CONNEXION ADMIN (mot de passe) ===
         function loginAdmin() {
             const pwd = document.getElementById('admin-password').value;
             if (pwd === ADMIN_PASSWORD) {
                 isAdmin = true;
                 document.getElementById('admin-login').style.display = 'none';
                 document.getElementById('admin-controls').style.display = 'block';
-                loadProducts(); // recharge pour afficher les boutons supprimer
-                console.log('✅ Admin connecté');
+                loadProducts();
+                alert('Bienvenue admin');
             } else {
                 alert('Mot de passe incorrect');
             }
         }
 
-        // === AFFICHER / MASQUER LE PANNEAU ADMIN ===
         function toggleAdminPanel() {
             const panel = document.getElementById('admin-panel');
-            if (!panel) {
-                console.error('Élément admin-panel introuvable');
-                return;
-            }
-            panel.classList.toggle('active');
-            if (panel.classList.contains('active')) {
-                if (isAdmin) {
-                    document.getElementById('admin-login').style.display = 'none';
-                    document.getElementById('admin-controls').style.display = 'block';
-                } else {
+            if (panel) {
+                panel.classList.toggle('active');
+                // Si le panneau est affiché et qu'on n'est pas admin, on montre le formulaire de login
+                if (panel.classList.contains('active') && !isAdmin) {
                     document.getElementById('admin-login').style.display = 'block';
                     document.getElementById('admin-controls').style.display = 'none';
+                } else if (panel.classList.contains('active') && isAdmin) {
+                    document.getElementById('admin-login').style.display = 'none';
+                    document.getElementById('admin-controls').style.display = 'block';
                 }
+            } else {
+                alert('Panneau admin introuvable !');
             }
-            console.log('Panneau admin toggled, actif:', panel.classList.contains('active'));
         }
 
         function escapeHtml(str) {
@@ -277,30 +241,27 @@
             return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
         }
 
-        // === INITIALISATION ===
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM chargé, initialisation...');
+        // ========== INITIALISATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
             loadProducts();
-            
-            const loginBtn = document.getElementById('login-btn');
-            if (loginBtn) loginBtn.addEventListener('click', loginAdmin);
-            else console.error('Bouton login introuvable');
-            
-            const addForm = document.getElementById('add-product-form');
-            if (addForm) addForm.addEventListener('submit', addProduct);
-            else console.error('Formulaire add-product-form introuvable');
-            
-            // Bouton admin dans le menu
+
+            document.getElementById('login-btn').addEventListener('click', loginAdmin);
+            document.getElementById('add-product-form').addEventListener('submit', addProduct);
+
+            // Bouton Admin du menu
             const adminMenuBtn = document.getElementById('admin-menu-btn');
-            if (adminMenuBtn) adminMenuBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // éviter le saut d'ancre
-                toggleAdminPanel();
-            });
-            
-            // Bouton admin flottant (🔧)
-            const adminToggle = document.getElementById('admin-toggle-btn');
-            if (adminToggle) adminToggle.addEventListener('click', toggleAdminPanel);
-            else console.error('Bouton admin flottant introuvable');
+            if (adminMenuBtn) {
+                adminMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    toggleAdminPanel();
+                });
+            }
+
+            // Bouton flottant 🔧
+            const adminToggleBtn = document.getElementById('admin-toggle-btn');
+            if (adminToggleBtn) {
+                adminToggleBtn.addEventListener('click', toggleAdminPanel);
+            }
         });
 
         // Menu mobile
