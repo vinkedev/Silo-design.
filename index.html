@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siloé Design & Communication - Produits digitaux</title>
+    <title>Siloé Design & Communication</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* Votre CSS existant (inchangé) */
+        /* Vos styles existants (je les garde tous, mais on ajoute quelques styles pour l'admin) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -52,10 +52,12 @@
         .card-body p { color: #4a5568; margin-bottom: 10px; }
         .card .price { font-size: 20px; font-weight: 700; color: #3498db; margin: 10px 0; }
         .tag { display: inline-block; background: #3498db20; color: #1e3a5f; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
-        .btn-small { display: inline-block; background: #3498db; color: #fff; padding: 8px 20px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: background 0.3s; border: none; cursor: pointer; }
+        .btn-small { display: inline-block; background: #3498db; color: #fff; padding: 8px 20px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: background 0.3s; border: none; cursor: pointer; font-size: 14px; }
         .btn-small:hover { background: #1e3a5f; }
         .btn-danger { background: #e74c3c; margin-left: 10px; }
         .btn-danger:hover { background: #c0392b; }
+        .btn-warning { background: #f39c12; margin-left: 10px; }
+        .btn-warning:hover { background: #e67e22; }
         .services-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
         .service-block { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .service-block h3 { color: #1e3a5f; margin-bottom: 20px; font-size: 24px; }
@@ -78,6 +80,14 @@
         .login-form { text-align: center; margin-bottom: 20px; }
         .login-form input { padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px; }
         .admin-form input, .admin-form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+        .edit-form { background: #f9f9f9; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        /* Styles pour l'interface admin */
+        .admin-view { display: none; }
+        .admin-view.active { display: block; }
+        .admin-products-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px; }
+        .admin-products-table th, .admin-products-table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .admin-products-table th { background: #1e3a5f; color: white; }
+        .admin-products-table tr:hover { background: #f5f5f5; }
         @media (max-width: 768px) {
             .hamburger { display: flex; }
             .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: #fff; width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 10px rgba(0,0,0,0.05); }
@@ -129,33 +139,44 @@
     <!-- Formations -->
     <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid"><div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphisme"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1574717024453-2b5c6b9d7b1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Montage vidéo"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrepreneuriat"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement personnel"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div></div></div></section>
 
-    <!-- Produits digitaux -->
+    <!-- SECTION PRODUITS (affichage public) -->
     <section id="produits" class="section">
         <div class="container">
             <h2 class="section-title">Nos produits digitaux</h2>
-            <div id="products-container" class="cards-grid">
+            <div id="public-products" class="cards-grid">
                 <div style="text-align:center; grid-column:1/-1;">Chargement des produits...</div>
-            </div>
-
-            <!-- Panneau d'administration -->
-            <div id="admin-panel" class="admin-panel">
-                <div id="admin-login" class="login-form">
-                    <input type="password" id="admin-password" placeholder="Mot de passe admin">
-                    <button class="btn-small" id="login-btn">Se connecter</button>
-                </div>
-                <div id="admin-controls" style="display: none;">
-                    <h3>Gestion des produits</h3>
-                    <form id="add-product-form" class="admin-form">
-                        <input type="text" id="product-name" placeholder="Nom du produit" required>
-                        <textarea id="product-description" placeholder="Description" rows="2"></textarea>
-                        <input type="text" id="product-price" placeholder="Prix (ex: 19,90 €)" required>
-                        <input type="text" id="product-image" placeholder="URL de l'image">
-                        <button type="submit" class="btn-small">Ajouter le produit</button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
+
+    <!-- SECTION ADMIN (cachée par défaut) -->
+    <div id="admin-view" class="admin-view">
+        <div class="container">
+            <h2 class="section-title">Administration des produits</h2>
+            <div>
+                <h3>Ajouter un produit</h3>
+                <form id="admin-add-form" class="admin-form" style="background:#f9f9f9; padding:15px; border-radius:8px;">
+                    <input type="text" id="admin-name" placeholder="Nom du produit" required>
+                    <textarea id="admin-description" placeholder="Description" rows="2"></textarea>
+                    <input type="text" id="admin-price" placeholder="Prix (ex: 19,90 €)" required>
+                    <input type="text" id="admin-image" placeholder="URL de l'image">
+                    <button type="submit" class="btn-small">Ajouter le produit</button>
+                </form>
+            </div>
+            <div>
+                <h3>Liste des produits</h3>
+                <table id="admin-products-table" class="admin-products-table">
+                    <thead>
+                        <tr><th>Nom</th><th>Prix</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody id="admin-products-list">
+                        <tr><td colspan="3">Chargement...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <button id="logout-admin" class="btn-small" style="background:#e74c3c; margin-top:20px;">Se déconnecter</button>
+        </div>
+    </div>
 
     <!-- Écriture & Secrétariat -->
     <section id="support" class="section bg-light"><div class="container"><h2 class="section-title">Écriture & Secrétariat</h2><div class="services-list"><div class="service-block"><h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3><ul><li>Rédaction web (SEO)</li><li>Articles de blog</li><li>Communiqués de presse</li><li>Interviews & reportages</li><li>Ghostwriting</li></ul></div><div class="service-block"><h3><i class="fas fa-file-alt"></i> Secrétariat</h3><ul><li>Gestion de courrier</li><li>Accueil téléphonique</li><li>Prise de rendez-vous</li><li>Classement & archivage</li><li>Comptabilité simplifiée</li></ul></div></div><div class="section-content" style="margin-top:40px;"><p>Des services sur mesure pour alléger votre quotidien et booster votre communication.</p></div></div></section>
@@ -165,112 +186,186 @@
 
     <footer><div class="container"><p>&copy; 2025 Siloé Design & Communication. Tous droits réservés.</p></div></footer>
 
-    <button id="admin-toggle-btn" class="admin-btn" title="Administration">🔧</button>
+    <button id="admin-fab" class="admin-btn" title="Administration">🔧</button>
+
+    <div id="login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+        <div style="background:white; padding:30px; border-radius:8px; text-align:center;">
+            <h3>Accès administration</h3>
+            <input type="password" id="modal-password" placeholder="Mot de passe admin" style="margin:10px 0; padding:8px;">
+            <div>
+                <button id="modal-login-btn" class="btn-small">Se connecter</button>
+                <button id="modal-close-btn" class="btn-small" style="background:#ccc;">Fermer</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // === CONFIGURATION SUPABASE (CORRIGÉ : renommer la variable) ===
+        // === CONFIGURATION SUPABASE ===
         const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
-        
-        // Utilisation d'un nom différent pour éviter le conflit avec la variable globale
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        
         const ADMIN_PASSWORD = 'monMotDePasse123';
         let isAdmin = false;
 
-        // === CHARGEMENT DES PRODUITS ===
+        // Éléments DOM
+        const publicProductsDiv = document.getElementById('public-products');
+        const adminViewDiv = document.getElementById('admin-view');
+        const loginModal = document.getElementById('login-modal');
+        const adminProductsTbody = document.getElementById('admin-products-list');
+
+        // === FONCTIONS COMMUNES ===
         async function loadProducts() {
-            const container = document.getElementById('products-container');
-            if (!container) return;
-            container.innerHTML = '<div style="text-align:center;">⏳ Chargement des produits...</div>';
             try {
                 const { data, error } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
                 if (error) throw error;
-                if (!data || data.length === 0) {
-                    container.innerHTML = '<div style="text-align:center;">📭 Aucun produit disponible.</div>';
-                    return;
-                }
-                container.innerHTML = data.map(product => `
-                    <div class="card" data-id="${product.id}">
-                        <img src="${product.image_url || 'https://via.placeholder.com/300x180?text=Image'}" alt="${escapeHtml(product.name)}">
-                        <div class="card-body">
-                            <h3>${escapeHtml(product.name)}</h3>
-                            <p>${escapeHtml(product.description || '')}</p>
-                            <div class="price">${escapeHtml(product.price)}</div>
-                            <a href="#" class="btn-small" onclick="return false;">Acheter</a>
-                            ${isAdmin ? `<button class="btn-small btn-danger" onclick="deleteProduct('${product.id}')">Supprimer</button>` : ''}
-                        </div>
-                    </div>
-                `).join('');
+                return data || [];
             } catch (err) {
-                console.error('Erreur chargement produits:', err);
-                container.innerHTML = `<div style="text-align:center;">❌ Erreur: ${err.message}</div>`;
+                console.error(err);
+                return [];
             }
         }
 
-        // === AJOUTER UN PRODUIT ===
-        async function addProduct(e) {
+        async function displayPublicProducts() {
+            publicProductsDiv.innerHTML = '<div style="text-align:center;">⏳ Chargement des produits...</div>';
+            const products = await loadProducts();
+            if (products.length === 0) {
+                publicProductsDiv.innerHTML = '<div style="text-align:center;">📭 Aucun produit disponible.</div>';
+                return;
+            }
+            publicProductsDiv.innerHTML = products.map(product => `
+                <div class="card">
+                    <img src="${product.image_url || 'https://via.placeholder.com/300x180?text=Image'}" alt="${escapeHtml(product.name)}">
+                    <div class="card-body">
+                        <h3>${escapeHtml(product.name)}</h3>
+                        <p>${escapeHtml(product.description || '')}</p>
+                        <div class="price">${escapeHtml(product.price)}</div>
+                        <a href="#" class="btn-small" onclick="return false;">Acheter</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function displayAdminProducts() {
+            if (!isAdmin) return;
+            adminProductsTbody.innerHTML = '<tr><td colspan="3">Chargement...</td></tr>';
+            const products = await loadProducts();
+            if (products.length === 0) {
+                adminProductsTbody.innerHTML = '<tr><td colspan="3">Aucun produit.</td></tr>';
+                return;
+            }
+            adminProductsTbody.innerHTML = products.map(product => `
+                <tr>
+                    <td>${escapeHtml(product.name)}</td>
+                    <td>${escapeHtml(product.price)}</td>
+                    <td>
+                        <button class="btn-small btn-warning" onclick="editProduct('${product.id}')">Modifier</button>
+                        <button class="btn-small btn-danger" onclick="deleteProduct('${product.id}')">Supprimer</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // === AJOUTER PRODUIT (admin) ===
+        async function addAdminProduct(e) {
             e.preventDefault();
-            if (!isAdmin) { alert('Accès non autorisé.'); return; }
-            const name = document.getElementById('product-name').value.trim();
-            const price = document.getElementById('product-price').value.trim();
-            if (!name || !price) { alert('Nom et prix requis.'); return; }
+            if (!isAdmin) return;
+            const name = document.getElementById('admin-name').value.trim();
+            const price = document.getElementById('admin-price').value.trim();
+            if (!name || !price) { alert('Nom et prix requis'); return; }
             const { error } = await supabaseClient.from('products').insert([{
                 name,
-                description: document.getElementById('product-description').value.trim(),
+                description: document.getElementById('admin-description').value.trim(),
                 price,
-                image_url: document.getElementById('product-image').value.trim()
+                image_url: document.getElementById('admin-image').value.trim()
             }]);
             if (error) alert('Erreur : ' + error.message);
             else {
                 alert('Produit ajouté !');
-                document.getElementById('add-product-form').reset();
-                loadProducts();
+                document.getElementById('admin-add-form').reset();
+                await displayPublicProducts();
+                await displayAdminProducts();
             }
         }
 
-        // === SUPPRIMER UN PRODUIT ===
+        // === SUPPRIMER PRODUIT ===
         window.deleteProduct = async function(id) {
-            if (!isAdmin) { alert('Accès non autorisé.'); return; }
+            if (!isAdmin) return;
             if (confirm('Supprimer ce produit ?')) {
                 const { error } = await supabaseClient.from('products').delete().eq('id', id);
                 if (error) alert('Erreur : ' + error.message);
-                else { alert('Produit supprimé.'); loadProducts(); }
+                else {
+                    alert('Produit supprimé.');
+                    await displayPublicProducts();
+                    await displayAdminProducts();
+                }
             }
         };
 
+        // === MODIFIER PRODUIT ===
+        window.editProduct = async function(id) {
+            if (!isAdmin) return;
+            // Récupérer le produit actuel
+            const { data, error } = await supabaseClient.from('products').select('*').eq('id', id).single();
+            if (error) { alert('Erreur chargement produit'); return; }
+            const newName = prompt('Nouveau nom :', data.name);
+            if (newName === null) return;
+            const newPrice = prompt('Nouveau prix :', data.price);
+            if (newPrice === null) return;
+            const newDesc = prompt('Nouvelle description :', data.description || '');
+            const newImage = prompt('Nouvelle URL image :', data.image_url || '');
+            const { error: updateError } = await supabaseClient.from('products').update({
+                name: newName.trim(),
+                price: newPrice.trim(),
+                description: newDesc.trim(),
+                image_url: newImage.trim()
+            }).eq('id', id);
+            if (updateError) alert('Erreur : ' + updateError.message);
+            else {
+                alert('Produit modifié');
+                await displayPublicProducts();
+                await displayAdminProducts();
+            }
+        };
+
+        // === AFFICHER LA VUE ADMIN ===
+        function showAdminView() {
+            adminViewDiv.classList.add('active');
+            // Masquer les sections publiques si besoin (on peut les laisser, mais on veut une vue admin dédiée)
+            // On fait défiler jusqu'à la vue admin
+            adminViewDiv.scrollIntoView({ behavior: 'smooth' });
+            displayAdminProducts();
+        }
+
+        function hideAdminView() {
+            adminViewDiv.classList.remove('active');
+        }
+
         // === CONNEXION ADMIN ===
-        function loginAdmin() {
-            const pwd = document.getElementById('admin-password').value;
-            if (pwd === ADMIN_PASSWORD) {
+        function loginAdmin(password) {
+            if (password === ADMIN_PASSWORD) {
                 isAdmin = true;
-                document.getElementById('admin-login').style.display = 'none';
-                document.getElementById('admin-controls').style.display = 'block';
-                loadProducts(); // recharge pour afficher les boutons supprimer
-                console.log('✅ Admin connecté');
+                loginModal.style.display = 'none';
+                showAdminView();
             } else {
                 alert('Mot de passe incorrect');
             }
         }
 
-        // === AFFICHER / MASQUER LE PANNEAU ADMIN ===
-        function toggleAdminPanel() {
-            const panel = document.getElementById('admin-panel');
-            if (!panel) {
-                console.error('Élément admin-panel introuvable');
-                return;
-            }
-            panel.classList.toggle('active');
-            if (panel.classList.contains('active')) {
-                if (isAdmin) {
-                    document.getElementById('admin-login').style.display = 'none';
-                    document.getElementById('admin-controls').style.display = 'block';
-                } else {
-                    document.getElementById('admin-login').style.display = 'block';
-                    document.getElementById('admin-controls').style.display = 'none';
-                }
-            }
-            console.log('Panneau admin toggled, actif:', panel.classList.contains('active'));
+        function logoutAdmin() {
+            isAdmin = false;
+            hideAdminView();
+            // On revient en haut de la page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openLoginModal() {
+            loginModal.style.display = 'flex';
+            document.getElementById('modal-password').value = '';
+            document.getElementById('modal-password').focus();
+        }
+
+        function closeLoginModal() {
+            loginModal.style.display = 'none';
         }
 
         function escapeHtml(str) {
@@ -279,29 +374,42 @@
         }
 
         // === INITIALISATION ===
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM chargé, initialisation...');
-            loadProducts();
-            
-            const loginBtn = document.getElementById('login-btn');
-            if (loginBtn) loginBtn.addEventListener('click', loginAdmin);
-            else console.error('Bouton login introuvable');
-            
-            const addForm = document.getElementById('add-product-form');
-            if (addForm) addForm.addEventListener('submit', addProduct);
-            else console.error('Formulaire add-product-form introuvable');
-            
-            // Bouton admin dans le menu
-            const adminMenuBtn = document.getElementById('admin-menu-btn');
-            if (adminMenuBtn) adminMenuBtn.addEventListener('click', (e) => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            await displayPublicProducts();
+
+            // Gestion du bouton Admin dans le menu
+            document.getElementById('admin-menu-btn').addEventListener('click', (e) => {
                 e.preventDefault();
-                toggleAdminPanel();
+                if (isAdmin) {
+                    showAdminView();
+                } else {
+                    openLoginModal();
+                }
             });
-            
-            // Bouton admin flottant (🔧)
-            const adminToggle = document.getElementById('admin-toggle-btn');
-            if (adminToggle) adminToggle.addEventListener('click', toggleAdminPanel);
-            else console.error('Bouton admin flottant introuvable');
+
+            // Bouton flottant
+            document.getElementById('admin-fab').addEventListener('click', () => {
+                if (isAdmin) {
+                    showAdminView();
+                } else {
+                    openLoginModal();
+                }
+            });
+
+            // Modal login
+            document.getElementById('modal-login-btn').addEventListener('click', () => {
+                const pwd = document.getElementById('modal-password').value;
+                loginAdmin(pwd);
+            });
+            document.getElementById('modal-close-btn').addEventListener('click', closeLoginModal);
+            // Fermer en cliquant en dehors
+            loginModal.addEventListener('click', (e) => {
+                if (e.target === loginModal) closeLoginModal();
+            });
+
+            // Formulaire ajout admin
+            document.getElementById('admin-add-form').addEventListener('submit', addAdminProduct);
+            document.getElementById('logout-admin').addEventListener('click', logoutAdmin);
         });
 
         // Menu mobile
