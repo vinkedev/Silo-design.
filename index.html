@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* === STYLES EXISTANTS === */
+        /* === STYLES (inchangés, avec responsive déjà inclus) === */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -28,18 +28,8 @@
         .hero-content p { font-size: 18px; margin-bottom: 30px; color: #4a5568; }
         .btn { display: inline-block; background: #3498db; color: #fff; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s, transform 0.2s; border: none; cursor: pointer; }
         .btn:hover { background: #1e3a5f; transform: scale(1.05); }
-        /* Nouveau style pour l'image d'accueil circulaire */
-        .hero-image {
-            text-align: center;
-        }
-        .hero-image img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+        .hero-image { text-align: center; }
+        .hero-image img { width: 100%; max-width: 400px; height: auto; border-radius: 50%; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .services-overview { padding: 60px 0; background: #fff; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
         .service-card { padding: 30px 20px; border-radius: 8px; background: #f4f7fc; transition: transform 0.3s, box-shadow 0.3s; }
@@ -144,10 +134,13 @@
     <section id="business" class="section"><div class="container"><h2 class="section-title">SDC Business</h2><div class="section-content"><p>Conseil en communication et marketing pour entreprises : stratégie digitale, branding, gestion des réseaux sociaux, campagnes publicitaires et études de marché. Nous vous accompagnons pour développer votre notoriété et atteindre vos objectifs.</p><div class="stats"><div class="stat-item"><h3>50+</h3><p>Clients satisfaits</p></div><div class="stat-item"><h3>100+</h3><p>Projets réalisés</p></div><div class="stat-item"><h3>5 ans</h3><p>d'expérience</p></div></div></div></div></section>
 
     <!-- Formations -->
-    <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid"><div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphisme"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div>
-        <!-- Image montage vidéo corrigée avec une URL fonctionnelle -->
-        <div class="card"><img src="https://images.unsplash.com/photo-1574717024453-2b5c6b9d7b1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Montage vidéo"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div>
-        <div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrepreneuriat"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement personnel"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div></div></div></section>
+    <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid">
+        <div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphisme"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div>
+        <!-- Image montage vidéo corrigée -->
+        <div class="card"><img src="https://images.unsplash.com/photo-1536240476400-b3aa8b3e0f6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Montage vidéo"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrepreneuriat"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement personnel"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div>
+    </div></div></section>
 
     <!-- Produits digitaux -->
     <section id="produits" class="section">
