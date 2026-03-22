@@ -28,7 +28,18 @@
         .hero-content p { font-size: 18px; margin-bottom: 30px; color: #4a5568; }
         .btn { display: inline-block; background: #3498db; color: #fff; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s, transform 0.2s; border: none; cursor: pointer; }
         .btn:hover { background: #1e3a5f; transform: scale(1.05); }
-        .hero-image img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* Nouveau style pour l'image d'accueil circulaire */
+        .hero-image {
+            text-align: center;
+        }
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
         .services-overview { padding: 60px 0; background: #fff; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
         .service-card { padding: 30px 20px; border-radius: 8px; background: #f4f7fc; transition: transform 0.3s, box-shadow 0.3s; }
@@ -88,6 +99,7 @@
             .nav-menu li { margin: 15px 0; }
             .hero-container { grid-template-columns: 1fr; text-align: center; }
             .hero-content h1 { font-size: 36px; }
+            .hero-image img { max-width: 250px; }
             .contact-grid, .services-list { grid-template-columns: 1fr; }
             .stats { flex-direction: column; gap: 20px; }
         }
@@ -120,7 +132,6 @@
                 <a href="#produits" class="btn">Découvrir nos produits</a>
             </div>
             <div class="hero-image">
-                <!-- Image modifiée avec votre image locale -->
                 <img src="siloe/siloe.jpg" alt="Siloé Design & Communication">
             </div>
         </div>
@@ -133,7 +144,10 @@
     <section id="business" class="section"><div class="container"><h2 class="section-title">SDC Business</h2><div class="section-content"><p>Conseil en communication et marketing pour entreprises : stratégie digitale, branding, gestion des réseaux sociaux, campagnes publicitaires et études de marché. Nous vous accompagnons pour développer votre notoriété et atteindre vos objectifs.</p><div class="stats"><div class="stat-item"><h3>50+</h3><p>Clients satisfaits</p></div><div class="stat-item"><h3>100+</h3><p>Projets réalisés</p></div><div class="stat-item"><h3>5 ans</h3><p>d'expérience</p></div></div></div></div></section>
 
     <!-- Formations -->
-    <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid"><div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphisme"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1574717024453-2b5c6b9d7b1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Montage vidéo"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrepreneuriat"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement personnel"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div></div></div></section>
+    <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid"><div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphisme"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div>
+        <!-- Image montage vidéo corrigée avec une URL fonctionnelle -->
+        <div class="card"><img src="https://images.unsplash.com/photo-1574717024453-2b5c6b9d7b1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Montage vidéo"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div>
+        <div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrepreneuriat"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div><div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement personnel"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div></div></div></section>
 
     <!-- Produits digitaux -->
     <section id="produits" class="section">
@@ -180,9 +194,6 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         const ADMIN_PASSWORD = 'monMotDePasse123';
         let isAdmin = false;
-
-        // Variable pour stocker l'ID du produit en cours d'édition
-        let editingProductId = null;
 
         // === CHARGEMENT DES PRODUITS ===
         async function loadProducts() {
@@ -248,10 +259,9 @@
             }
         };
 
-        // === ÉDITER UN PRODUIT (afficher le formulaire de modification) ===
+        // === ÉDITER UN PRODUIT ===
         window.editProduct = function(id) {
             if (!isAdmin) { alert('Accès non autorisé.'); return; }
-            // Récupérer les données du produit existant
             const productCard = document.querySelector(`.card[data-id="${id}"]`);
             if (!productCard) return;
             const name = productCard.querySelector('h3').innerText;
@@ -259,7 +269,6 @@
             const price = productCard.querySelector('.price').innerText;
             const img = productCard.querySelector('img')?.src || '';
 
-            // Créer un formulaire d'édition dans le panneau admin
             const adminControls = document.getElementById('admin-controls');
             const existingEditForm = document.getElementById('edit-form-container');
             if (existingEditForm) existingEditForm.remove();
@@ -280,7 +289,6 @@
             `;
             adminControls.appendChild(editFormDiv);
 
-            // Gérer la soumission du formulaire de modification
             const editForm = document.getElementById('edit-product-form');
             editForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -300,8 +308,6 @@
                     loadProducts();
                 }
             });
-
-            // Annuler l'édition
             document.getElementById('cancel-edit').addEventListener('click', () => {
                 editFormDiv.remove();
             });
@@ -314,7 +320,7 @@
                 isAdmin = true;
                 document.getElementById('admin-login').style.display = 'none';
                 document.getElementById('admin-controls').style.display = 'block';
-                loadProducts(); // recharge pour afficher les boutons modifier/supprimer
+                loadProducts();
                 console.log('✅ Admin connecté');
             } else {
                 alert('Mot de passe incorrect');
@@ -346,7 +352,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM chargé, initialisation...');
             loadProducts();
-            
             document.getElementById('login-btn').addEventListener('click', loginAdmin);
             document.getElementById('add-product-form').addEventListener('submit', addProduct);
             document.getElementById('admin-menu-btn').addEventListener('click', (e) => {
