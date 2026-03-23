@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* === STYLES (inchangés, avec responsive déjà inclus) === */
+        /* === STYLES (inchangés) === */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -136,7 +136,6 @@
     <!-- Formations -->
     <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid">
         <div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphisme"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div>
-        <!-- Image montage vidéo corrigée -->
         <div class="card"><img src="https://images.unsplash.com/photo-1536240476400-b3aa8b3e0f6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Montage vidéo"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div>
         <div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrepreneuriat"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div>
         <div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Développement personnel"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div>
@@ -158,11 +157,12 @@
                 </div>
                 <div id="admin-controls" style="display: none;">
                     <h3>Gestion des produits</h3>
-                    <form id="add-product-form" class="admin-form">
+                    <form id="add-product-form" class="admin-form" enctype="multipart/form-data">
                         <input type="text" id="product-name" placeholder="Nom du produit" required>
                         <textarea id="product-description" placeholder="Description" rows="2"></textarea>
                         <input type="text" id="product-price" placeholder="Prix (ex: 19,90 €)" required>
-                        <input type="text" id="product-image" placeholder="URL de l'image">
+                        <input type="file" id="product-image-file" accept="image/*">
+                        <small>Laissez vide pour ne pas changer l'image (lors de la modification)</small>
                         <button type="submit" class="btn-small">Ajouter le produit</button>
                     </form>
                 </div>
@@ -187,6 +187,29 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         const ADMIN_PASSWORD = 'monMotDePasse123';
         let isAdmin = false;
+
+        // === BUCKET DE STOCKAGE ===
+        const STORAGE_BUCKET = 'product-images'; // À créer dans Supabase
+
+        // === UPLOAD D'IMAGE ===
+        async function uploadImage(file, productName) {
+            if (!file) return null;
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${Date.now()}_${productName.replace(/\s+/g, '_')}.${fileExt}`;
+            const filePath = `${fileName}`;
+            const { data, error } = await supabaseClient.storage
+                .from(STORAGE_BUCKET)
+                .upload(filePath, file);
+            if (error) {
+                console.error('Erreur upload image:', error);
+                alert('Erreur lors de l\'upload de l\'image : ' + error.message);
+                return null;
+            }
+            const { data: urlData } = supabaseClient.storage
+                .from(STORAGE_BUCKET)
+                .getPublicUrl(filePath);
+            return urlData.publicUrl;
+        }
 
         // === CHARGEMENT DES PRODUITS ===
         async function loadProducts() {
@@ -228,16 +251,25 @@
             const name = document.getElementById('product-name').value.trim();
             const price = document.getElementById('product-price').value.trim();
             if (!name || !price) { alert('Nom et prix requis.'); return; }
+
+            const imageFile = document.getElementById('product-image-file').files[0];
+            let imageUrl = '';
+            if (imageFile) {
+                imageUrl = await uploadImage(imageFile, name);
+                if (!imageUrl) return;
+            }
+
             const { error } = await supabaseClient.from('products').insert([{
                 name,
                 description: document.getElementById('product-description').value.trim(),
                 price,
-                image_url: document.getElementById('product-image').value.trim()
+                image_url: imageUrl
             }]);
             if (error) alert('Erreur : ' + error.message);
             else {
                 alert('Produit ajouté !');
                 document.getElementById('add-product-form').reset();
+                document.getElementById('product-image-file').value = '';
                 loadProducts();
             }
         }
@@ -260,7 +292,7 @@
             const name = productCard.querySelector('h3').innerText;
             const description = productCard.querySelector('p')?.innerText || '';
             const price = productCard.querySelector('.price').innerText;
-            const img = productCard.querySelector('img')?.src || '';
+            const currentImage = productCard.querySelector('img')?.src || '';
 
             const adminControls = document.getElementById('admin-controls');
             const existingEditForm = document.getElementById('edit-form-container');
@@ -271,11 +303,13 @@
             editFormDiv.className = 'edit-form';
             editFormDiv.innerHTML = `
                 <h4>Modifier le produit</h4>
-                <form id="edit-product-form">
+                <form id="edit-product-form" enctype="multipart/form-data">
                     <input type="text" id="edit-name" value="${escapeHtml(name)}" placeholder="Nom" required>
                     <textarea id="edit-description" placeholder="Description" rows="2">${escapeHtml(description)}</textarea>
                     <input type="text" id="edit-price" value="${escapeHtml(price)}" placeholder="Prix" required>
-                    <input type="text" id="edit-image" value="${escapeHtml(img)}" placeholder="URL de l'image">
+                    <div>Image actuelle : <img src="${currentImage}" style="max-width:100px; display:block;"></div>
+                    <input type="file" id="edit-image-file" accept="image/*">
+                    <small>Laissez vide pour conserver l'image actuelle</small>
                     <button type="submit" class="btn-small">Enregistrer les modifications</button>
                     <button type="button" class="btn-small btn-danger" id="cancel-edit">Annuler</button>
                 </form>
@@ -288,11 +322,20 @@
                 const newName = document.getElementById('edit-name').value.trim();
                 const newPrice = document.getElementById('edit-price').value.trim();
                 if (!newName || !newPrice) { alert('Nom et prix requis'); return; }
+
+                let newImageUrl = currentImage;
+                const newImageFile = document.getElementById('edit-image-file').files[0];
+                if (newImageFile) {
+                    const uploadedUrl = await uploadImage(newImageFile, newName);
+                    if (uploadedUrl) newImageUrl = uploadedUrl;
+                    else return;
+                }
+
                 const { error } = await supabaseClient.from('products').update({
                     name: newName,
                     description: document.getElementById('edit-description').value.trim(),
                     price: newPrice,
-                    image_url: document.getElementById('edit-image').value.trim()
+                    image_url: newImageUrl
                 }).eq('id', id);
                 if (error) alert('Erreur : ' + error.message);
                 else {
