@@ -174,7 +174,33 @@
     <section id="support" class="section bg-light"><div class="container"><h2 class="section-title">Écriture & Secrétariat</h2><div class="services-list"><div class="service-block"><h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3><ul><li>Rédaction web (SEO)</li><li>Articles de blog</li><li>Communiqués de presse</li><li>Interviews & reportages</li><li>Ghostwriting</li></ul></div><div class="service-block"><h3><i class="fas fa-file-alt"></i> Secrétariat</h3><ul><li>Gestion de courrier</li><li>Accueil téléphonique</li><li>Prise de rendez-vous</li><li>Classement & archivage</li><li>Comptabilité simplifiée</li></ul></div></div><div class="section-content" style="margin-top:40px;"><p>Des services sur mesure pour alléger votre quotidien et booster votre communication.</p></div></div></section>
 
     <!-- Contact -->
-    <section id="contact" class="section"><div class="container"><h2 class="section-title">Contactez-nous</h2><div class="contact-grid"><div class="contact-info"><h3>Siloé Design & Communication</h3><p><i class="fas fa-map-marker-alt"></i> 123 avenue de la Créativité, 75000 Paris</p><p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p><p><i class="fas fa-envelope"></i> contact@siloedesign.com</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div><form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"><input type="text" name="nom" placeholder="Votre nom" required><input type="email" name="email" placeholder="Votre email" required><input type="text" name="sujet" placeholder="Sujet"><textarea name="message" rows="5" placeholder="Votre message" required></textarea><button type="submit" class="btn">Envoyer</button></form></div></div></section>
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Siloé Design & Communication</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 avenue de la Créativité, Ouagadougou, Burkina Faso</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+22606976932" style="color: #333; text-decoration: none;">+226 06 97 69 32</a></p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/22606976932" target="_blank" style="color: #333; text-decoration: none;">WhatsApp : +226 06 97 69 32</a></p>
+                    <p><i class="fas fa-envelope"></i> contact@siloedesign.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <input type="text" name="nom" placeholder="Votre nom" required>
+                    <input type="email" name="email" placeholder="Votre email" required>
+                    <input type="text" name="sujet" placeholder="Sujet">
+                    <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer><div class="container"><p>&copy; 2025 Siloé Design & Communication. Tous droits réservés.</p></div></footer>
 
@@ -211,6 +237,13 @@
             return urlData.publicUrl;
         }
 
+        // === FONCTION POUR GÉNÉRER LE LIEN WHATSAPP ===
+        function getWhatsAppLink(productName) {
+            const phone = '22606976932'; // sans le +
+            const message = encodeURIComponent(`Bonjour, je souhaite acheter le produit : ${productName}.`);
+            return `https://wa.me/${phone}?text=${message}`;
+        }
+
         // === CHARGEMENT DES PRODUITS ===
         async function loadProducts() {
             const container = document.getElementById('products-container');
@@ -223,21 +256,24 @@
                     container.innerHTML = '<div style="text-align:center;">📭 Aucun produit disponible.</div>';
                     return;
                 }
-                container.innerHTML = data.map(product => `
-                    <div class="card" data-id="${product.id}">
-                        <img src="${product.image_url || 'https://via.placeholder.com/300x180?text=Image'}" alt="${escapeHtml(product.name)}">
-                        <div class="card-body">
-                            <h3>${escapeHtml(product.name)}</h3>
-                            <p>${escapeHtml(product.description || '')}</p>
-                            <div class="price">${escapeHtml(product.price)}</div>
-                            <a href="#" class="btn-small" onclick="return false;">Acheter</a>
-                            ${isAdmin ? `
-                                <button class="btn-small btn-warning" onclick="editProduct('${product.id}')">Modifier</button>
-                                <button class="btn-small btn-danger" onclick="deleteProduct('${product.id}')">Supprimer</button>
-                            ` : ''}
+                container.innerHTML = data.map(product => {
+                    const whatsappLink = getWhatsAppLink(product.name);
+                    return `
+                        <div class="card" data-id="${product.id}">
+                            <img src="${product.image_url || 'https://via.placeholder.com/300x180?text=Image'}" alt="${escapeHtml(product.name)}">
+                            <div class="card-body">
+                                <h3>${escapeHtml(product.name)}</h3>
+                                <p>${escapeHtml(product.description || '')}</p>
+                                <div class="price">${escapeHtml(product.price)}</div>
+                                <a href="${whatsappLink}" target="_blank" class="btn-small">Acheter</a>
+                                ${isAdmin ? `
+                                    <button class="btn-small btn-warning" onclick="editProduct('${product.id}')">Modifier</button>
+                                    <button class="btn-small btn-danger" onclick="deleteProduct('${product.id}')">Supprimer</button>
+                                ` : ''}
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
             } catch (err) {
                 console.error('Erreur chargement produits:', err);
                 container.innerHTML = `<div style="text-align:center;">❌ Erreur: ${err.message}</div>`;
