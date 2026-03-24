@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* === STYLES (inchangés) === */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -44,54 +43,262 @@
         .stats { display: flex; justify-content: space-around; margin-top: 40px; flex-wrap: wrap; }
         .stat-item h3 { font-size: 36px; color: #3498db; }
         .stat-item p { color: #4a5568; }
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; position: relative; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(52,152,219,0.15); }
-        .card img { width: 100%; height: 180px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card-body h3 { margin-bottom: 10px; color: #1e3a5f; }
-        .card-body p { color: #4a5568; margin-bottom: 10px; }
-        .card .price { font-size: 20px; font-weight: 700; color: #3498db; margin: 10px 0; }
-        .tag { display: inline-block; background: #3498db20; color: #1e3a5f; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
-        .btn-small { display: inline-block; background: #3498db; color: #fff; padding: 8px 20px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: background 0.3s; border: none; cursor: pointer; font-size: 14px; }
-        .btn-small:hover { background: #1e3a5f; }
-        .btn-danger { background: #e74c3c; margin-left: 10px; }
-        .btn-danger:hover { background: #c0392b; }
-        .btn-warning { background: #f39c12; margin-left: 10px; }
-        .btn-warning:hover { background: #e67e22; }
-        .services-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
-        .service-block { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .service-block h3 { color: #1e3a5f; margin-bottom: 20px; font-size: 24px; }
-        .service-block i { color: #3498db; margin-right: 10px; }
-        .service-block ul { list-style: none; }
-        .service-block li { margin-bottom: 10px; color: #4a5568; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .contact-info h3 { margin-bottom: 20px; color: #1e3a5f; }
-        .contact-info p { margin-bottom: 10px; color: #4a5568; }
-        .contact-info i { margin-right: 10px; color: #3498db; }
-        .social-links a { display: inline-block; margin: 20px 10px 0 0; color: #1e3a5f; font-size: 20px; transition: color 0.3s; }
-        .social-links a:hover { color: #3498db; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; }
-        .contact-form button { width: 100%; }
-        footer { background: #1e3a5f; color: #fff; text-align: center; padding: 20px 0; }
-        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #2c3e50; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 20px; cursor: pointer; z-index: 999; opacity: 0.5; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .admin-btn:hover { opacity: 1; }
-        .admin-panel { background: #fff; border-radius: 8px; padding: 20px; margin-top: 30px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
-        .admin-panel.active { display: block; }
-        .login-form { text-align: center; margin-bottom: 20px; }
-        .login-form input { padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .admin-form input, .admin-form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
-        .edit-form { background: #f9f9f9; padding: 15px; margin-top: 10px; border-radius: 5px; }
+
+        /* === GRILLE PRODUITS & FORMATIONS (corrigée) === */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+            justify-content: center;
+            gap: 30px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(52,152,219,0.15);
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-body h3 {
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+        .card-body p {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .card .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        .tag {
+            display: inline-block;
+            background: #3498db20;
+            color: #1e3a5f;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        .btn-small {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-small:hover {
+            background: #1e3a5f;
+        }
+        .btn-danger {
+            background: #e74c3c;
+            margin-left: 10px;
+        }
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        .btn-warning {
+            background: #f39c12;
+            margin-left: 10px;
+        }
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        .services-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .service-block {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .service-block h3 {
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .service-block i {
+            color: #3498db;
+            margin-right: 10px;
+        }
+        .service-block ul {
+            list-style: none;
+        }
+        .service-block li {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: #1e3a5f;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        .contact-info i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 20px 10px 0 0;
+            color: #1e3a5f;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: #3498db;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        .contact-form button {
+            width: 100%;
+        }
+        footer {
+            background: #1e3a5f;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .admin-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .admin-btn:hover {
+            opacity: 1;
+        }
+        .admin-panel {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .admin-panel.active {
+            display: block;
+        }
+        .login-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-form input {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .admin-form input, .admin-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .edit-form {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: #fff; width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 10px rgba(0,0,0,0.05); }
-            .nav-menu.active { left: 0; }
-            .nav-menu li { margin: 15px 0; }
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-content h1 { font-size: 36px; }
-            .hero-image img { max-width: 250px; }
-            .contact-grid, .services-list { grid-template-columns: 1fr; }
-            .stats { flex-direction: column; gap: 20px; }
+            .hamburger {
+                display: flex;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: #fff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            .hero-image img {
+                max-width: 250px;
+            }
+            .contact-grid, .services-list {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+            .card {
+                max-width: 320px;
+            }
         }
     </style>
 </head>
@@ -215,7 +422,7 @@
         let isAdmin = false;
 
         // === BUCKET DE STOCKAGE ===
-        const STORAGE_BUCKET = 'product-images'; // À créer dans Supabase
+        const STORAGE_BUCKET = 'product-images';
 
         // === UPLOAD D'IMAGE ===
         async function uploadImage(file, productName) {
@@ -237,9 +444,9 @@
             return urlData.publicUrl;
         }
 
-        // === FONCTION POUR GÉNÉRER LE LIEN WHATSAPP ===
+        // === LIEN WHATSAPP ===
         function getWhatsAppLink(productName) {
-            const phone = '22606976932'; // sans le +
+            const phone = '22606976932';
             const message = encodeURIComponent(`Bonjour, je souhaite acheter le produit : ${productName}.`);
             return `https://wa.me/${phone}?text=${message}`;
         }
@@ -248,12 +455,12 @@
         async function loadProducts() {
             const container = document.getElementById('products-container');
             if (!container) return;
-            container.innerHTML = '<div style="text-align:center;">⏳ Chargement des produits...</div>';
+            container.innerHTML = '<div style="text-align:center; grid-column:1/-1;">⏳ Chargement des produits...</div>';
             try {
                 const { data, error } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
                 if (error) throw error;
                 if (!data || data.length === 0) {
-                    container.innerHTML = '<div style="text-align:center;">📭 Aucun produit disponible.</div>';
+                    container.innerHTML = '<div style="text-align:center; grid-column:1/-1;">📭 Aucun produit disponible.</div>';
                     return;
                 }
                 container.innerHTML = data.map(product => {
@@ -276,7 +483,7 @@
                 }).join('');
             } catch (err) {
                 console.error('Erreur chargement produits:', err);
-                container.innerHTML = `<div style="text-align:center;">❌ Erreur: ${err.message}</div>`;
+                container.innerHTML = `<div style="text-align:center; grid-column:1/-1;">❌ Erreur: ${err.message}</div>`;
             }
         }
 
