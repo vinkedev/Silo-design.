@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </noscript>
     <style>
-        /* Styles identiques à l'original mais minifiés manuellement pour lisibilité */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -219,13 +218,11 @@
             // === CONFIGURATION SUPABASE ===
             const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
             const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
-            // Attendre que Supabase soit chargé (le script est différé)
             let supabaseClient = null;
             let isAdmin = false;
             const ADMIN_PASSWORD = 'monMotDePasse123';
             const STORAGE_BUCKET = 'product-images';
 
-            // Fonctions utilitaires
             function escapeHtml(str) {
                 if (!str) return '';
                 return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
@@ -237,7 +234,6 @@
                 return `https://wa.me/${phone}?text=${message}`;
             }
 
-            // Upload d'image
             async function uploadImage(file, productName) {
                 if (!file || !supabaseClient) return null;
                 const fileExt = file.name.split('.').pop();
@@ -252,7 +248,6 @@
                 return urlData.publicUrl;
             }
 
-            // Charger les produits
             async function loadProducts() {
                 const container = document.getElementById('products-container');
                 if (!container || !supabaseClient) return;
@@ -288,7 +283,6 @@
                 }
             }
 
-            // Ajouter un produit
             async function addProduct(e) {
                 e.preventDefault();
                 if (!isAdmin || !supabaseClient) { alert('Accès non autorisé.'); return; }
@@ -316,7 +310,6 @@
                 }
             }
 
-            // Supprimer
             window.deleteProduct = async function(id) {
                 if (!isAdmin || !supabaseClient) { alert('Accès non autorisé.'); return; }
                 if (confirm('Supprimer ce produit ?')) {
@@ -326,7 +319,6 @@
                 }
             };
 
-            // Éditer
             window.editProduct = function(id) {
                 if (!isAdmin || !supabaseClient) { alert('Accès non autorisé.'); return; }
                 const productCard = document.querySelector(`.card[data-id="${id}"]`);
@@ -387,7 +379,6 @@
                 document.getElementById('cancel-edit').addEventListener('click', () => { editFormDiv.remove(); });
             };
 
-            // Connexion admin
             function loginAdmin() {
                 const pwd = document.getElementById('admin-password').value;
                 if (pwd === ADMIN_PASSWORD) {
@@ -400,7 +391,6 @@
                 }
             }
 
-            // Affichage panel admin
             function toggleAdminPanel() {
                 const panel = document.getElementById('admin-panel');
                 if (!panel) return;
@@ -416,19 +406,21 @@
                 }
             }
 
-            // Menu mobile (correction : gestion robuste)
+            // === MENU MOBILE ROBUSTE ===
             function initMobileMenu() {
                 const hamburger = document.getElementById('hamburger');
                 const navMenu = document.getElementById('nav-menu');
                 if (!hamburger || !navMenu) return;
 
-                const toggleMenu = () => {
+                const toggleMenu = (e) => {
+                    e.stopPropagation();  // Empêche la propagation du clic
                     hamburger.classList.toggle('active');
                     navMenu.classList.toggle('active');
                 };
 
+                // Écouteurs click et touchstart pour mobile
                 hamburger.addEventListener('click', toggleMenu);
-                hamburger.addEventListener('touchstart', toggleMenu); // pour mobile tactile
+                hamburger.addEventListener('touchstart', toggleMenu);
 
                 // Fermer le menu quand on clique sur un lien
                 document.querySelectorAll('.nav-menu a').forEach(link => {
@@ -441,7 +433,7 @@
                 });
             }
 
-            // Initialisation après chargement de Supabase et du DOM
+            // === INITIALISATION GÉNÉRALE ===
             function init() {
                 if (window.supabase) {
                     supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -451,9 +443,10 @@
                     return;
                 }
                 loadProducts();
-                initMobileMenu();
+                initMobileMenu(); // Initialiser le menu mobile
 
-                document.getElementById('login-btn').addEventListener('click', loginAdmin);
+                const loginBtn = document.getElementById('login-btn');
+                if (loginBtn) loginBtn.addEventListener('click', loginAdmin);
                 const addForm = document.getElementById('add-product-form');
                 if (addForm) addForm.addEventListener('submit', addProduct);
                 const adminMenuBtn = document.getElementById('admin-menu-btn');
