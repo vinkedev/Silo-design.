@@ -98,17 +98,14 @@
             .cards-grid { grid-template-columns: 1fr; justify-items: center; }
             .card { max-width: 320px; }
         }
-        /* Optimisation du chargement : images en lazy loading natif */
         img { content-visibility: auto; }
     </style>
-    <!-- Chargement différé de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <div class="logo"><h2>SDC<span>.</span></h2></div>
+            <div class="logo"><h2>SDC<span>. Impact</span></h2></div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#business">Business</a></li>
@@ -122,7 +119,6 @@
         </div>
     </nav>
 
-    <!-- Accueil -->
     <section id="accueil" class="hero">
         <div class="container hero-container">
             <div class="hero-content">
@@ -136,21 +132,58 @@
         </div>
     </section>
 
-    <!-- Services aperçu -->
     <section class="services-overview"><div class="container"><div class="services-grid"><div class="service-card"><i class="fas fa-bullhorn"></i><h3>Business</h3><p>Stratégie, branding, campagnes.</p></div><div class="service-card"><i class="fas fa-chalkboard-teacher"></i><h3>Formations</h3><p>Graphisme, vidéo, entrepreneuriat.</p></div><div class="service-card"><i class="fas fa-pen-fancy"></i><h3>Écriture & Secrétariat</h3><p>Rédaction, assistance administrative.</p></div><div class="service-card"><i class="fas fa-download"></i><h3>Produits digitaux</h3><p>E-books, templates, formations.</p></div></div></div></section>
 
-    <!-- Business -->
-    <section id="business" class="section"><div class="container"><h2 class="section-title">SDC Business</h2><div class="section-content"><p>Conseil en communication et marketing pour entreprises : stratégie digitale, branding, gestion des réseaux sociaux, campagnes publicitaires et études de marché. Nous vous accompagnons pour développer votre notoriété et atteindre vos objectifs.</p><div class="stats"><div class="stat-item"><h3>50+</h3><p>Clients satisfaits</p></div><div class="stat-item"><h3>100+</h3><p>Projets réalisés</p></div><div class="stat-item"><h3>5 ans</h3><p>d'expérience</p></div></div></div></div></section>
+    <section id="business" class="section"><div class="container"><h2 class="section-title">SDC Business</h2><div class="section-content"><p>Conseil en communication et marketing pour entreprises : stratégie digitale, branding, gestion des réseaux sociaux, campagnes publicitaires et études de marché. Nous vous accompagnons pour développer votre notoriété et atteindre vos objectifs.</p><div class="stats"><div class="stat-item"><h3>20+</h3><p>Clients satisfaits</p></div><div class="stat-item"><h3>50+</h3><p>Projets réalisés</p></div><div class="stat-item"><h3>2 ans</h3><p>d'expérience</p></div></div></div></div></section>
 
-    <!-- Formations -->
-    <section id="formations" class="section bg-light"><div class="container"><h2 class="section-title">SDC Formations</h2><div class="cards-grid">
-        <div class="card"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=200&fit=crop" alt="Graphisme" loading="lazy"><div class="card-body"><h3>Graphisme</h3><p>Maîtrisez Photoshop, Illustrator, InDesign – de débutant à expert.</p><span class="tag">5 jours</span></div></div>
-        <div class="card"><img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=200&fit=crop" alt="Montage vidéo" loading="lazy"><div class="card-body"><h3>Montage vidéo</h3><p>Premiere Pro, After Effects – réalisez vos films professionnels.</p><span class="tag">4 jours</span></div></div>
-        <div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop" alt="Entrepreneuriat" loading="lazy"><div class="card-body"><h3>Entrepreneuriat</h3><p>Créez et gérez votre entreprise : business plan, financement, marketing.</p><span class="tag">3 jours</span></div></div>
-        <div class="card"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop" alt="Développement personnel" loading="lazy"><div class="card-body"><h3>Développement personnel</h3><p>Confiance en soi, communication, gestion du stress.</p><span class="tag">2 jours</span></div></div>
-    </div></div></section>
+    <section id="formations" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">SDC Formations</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=200&fit=crop" alt="Graphisme" loading="lazy">
+                    <div class="card-body">
+                        <h3>Graphisme</h3>
+                        <p>Canva, Pixellab, Photoshop, Illustrator, InDesign – maîtrisez les outils indispensables pour des créations percutantes.</p>
+                        <span class="tag">5 jours</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=200&fit=crop" alt="Montage vidéo" loading="lazy">
+                    <div class="card-body">
+                        <h3>Montage vidéo</h3>
+                        <p>CapCut, Adobe Premiere Pro, After Effects, Filmora – réalisez des vidéos professionnelles du montage aux effets spéciaux.</p>
+                        <span class="tag">4 jours</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop" alt="Entrepreneuriat" loading="lazy">
+                    <div class="card-body">
+                        <h3>Entrepreneuriat</h3>
+                        <p>Créez et gérez votre entreprise : business plan, financement, marketing digital et stratégie commerciale.</p>
+                        <span class="tag">3 jours</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop" alt="Développement personnel" loading="lazy">
+                    <div class="card-body">
+                        <h3>Développement personnel</h3>
+                        <p>Art oratoire, confiance en soi, gestion du stress, communication non verbale – osez vous exprimer avec impact.</p>
+                        <span class="tag">2 jours</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop" alt="Intelligence artificielle" loading="lazy">
+                    <div class="card-body">
+                        <h3>Intelligence artificielle</h3>
+                        <p>Formation en Intelligence Artificielle – Découvrez les bases et applications de l'IA pour booster votre productivité.</p>
+                        <span class="tag">2 jours</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Produits digitaux -->
     <section id="produits" class="section">
         <div class="container">
             <h2 class="section-title">Nos produits digitaux</h2>
@@ -177,10 +210,37 @@
         </div>
     </section>
 
-    <!-- Écriture & Secrétariat -->
-    <section id="support" class="section bg-light"><div class="container"><h2 class="section-title">Écriture & Secrétariat</h2><div class="services-list"><div class="service-block"><h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3><ul><li>Rédaction web (SEO)</li><li>Articles de blog</li><li>Communiqués de presse</li><li>Interviews & reportages</li><li>Ghostwriting</li></ul></div><div class="service-block"><h3><i class="fas fa-file-alt"></i> Secrétariat</h3><ul><li>Gestion de courrier</li><li>Accueil téléphonique</li><li>Prise de rendez-vous</li><li>Classement & archivage</li><li>Comptabilité simplifiée</li></ul></div></div><div class="section-content" style="margin-top:40px;"><p>Des services sur mesure pour alléger votre quotidien et booster votre communication.</p></div></div></section>
+    <section id="support" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Écriture & Secrétariat</h2>
+            <div class="services-list">
+                <div class="service-block">
+                    <h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3>
+                    <ul>
+                        <li>Rédaction web (SEO)</li>
+                        <li>Articles de blog</li>
+                        <li>Communiqués de presse</li>
+                        <li>Interviews & reportages</li>
+                        <li>Ghostwriting</li>
+                    </ul>
+                </div>
+                <div class="service-block">
+                    <h3><i class="fas fa-file-alt"></i> Secrétariat & Services documentaires</h3>
+                    <ul>
+                        <li>Rédaction de documents professionnels (CV, lettres de motivation, lettres administratives, demandes d’emploi/stage)</li>
+                        <li>Comptes rendus de réunion, rapports de stage, rapports d’activité, synthèses de documents</li>
+                        <li>Transcription audio → texte (interviews, conférences, cours enregistrés)</li>
+                        <li>Saisie et mise en forme de documents (Word, mise en page professionnelle, correction, conversion PDF ↔ Word)</li>
+                        <li>Assistance administrative : rédaction de mails professionnels, préparation de dossiers, organisation et classement numérique</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-content" style="margin-top:40px;">
+                <p>Des services sur mesure pour alléger votre quotidien et booster votre communication.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Contact -->
     <section id="contact" class="section">
         <div class="container">
             <h2 class="section-title">Contactez-nous</h2>
@@ -190,7 +250,7 @@
                     <p><i class="fas fa-map-marker-alt"></i> Ouagadougou, Burkina Faso</p>
                     <p><i class="fas fa-phone"></i> <a href="tel:+22606976932" style="color: #333; text-decoration: none;">+226 06 97 69 32</a></p>
                     <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/22606976932" target="_blank" style="color: #333; text-decoration: none;">WhatsApp : +226 06 97 69 32</a></p>
-                    <p><i class="fas fa-envelope"></i> contact@siloedesign.com</p>
+                    <p><i class="fas fa-envelope"></i> siloedesigncommunication@gmail.com</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -215,7 +275,6 @@
 
     <script>
         (function() {
-            // === CONFIGURATION SUPABASE ===
             const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
             const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
             let supabaseClient = null;
@@ -406,23 +465,20 @@
                 }
             }
 
-            // === MENU MOBILE ROBUSTE ===
             function initMobileMenu() {
                 const hamburger = document.getElementById('hamburger');
                 const navMenu = document.getElementById('nav-menu');
                 if (!hamburger || !navMenu) return;
 
                 const toggleMenu = (e) => {
-                    e.stopPropagation();  // Empêche la propagation du clic
+                    e.stopPropagation();
                     hamburger.classList.toggle('active');
                     navMenu.classList.toggle('active');
                 };
 
-                // Écouteurs click et touchstart pour mobile
                 hamburger.addEventListener('click', toggleMenu);
                 hamburger.addEventListener('touchstart', toggleMenu);
 
-                // Fermer le menu quand on clique sur un lien
                 document.querySelectorAll('.nav-menu a').forEach(link => {
                     link.addEventListener('click', () => {
                         if (navMenu.classList.contains('active')) {
@@ -433,7 +489,6 @@
                 });
             }
 
-            // === INITIALISATION GÉNÉRALE ===
             function init() {
                 if (window.supabase) {
                     supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -443,7 +498,7 @@
                     return;
                 }
                 loadProducts();
-                initMobileMenu(); // Initialiser le menu mobile
+                initMobileMenu();
 
                 const loginBtn = document.getElementById('login-btn');
                 if (loginBtn) loginBtn.addEventListener('click', loginAdmin);
