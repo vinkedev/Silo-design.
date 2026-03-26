@@ -279,14 +279,7 @@
             transition: background 0.3s;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .fade-in-section {
-                transform: translateY(20px);
-            }
-        }
-
-        /* Styles existants préservés et optimisés */
+        /* Styles navbar avec logo image */
         .navbar {
             position: fixed;
             top: 0;
@@ -301,6 +294,25 @@
             justify-content: space-between;
             align-items: center;
             height: 70px;
+        }
+
+        /* Style pour le conteneur du logo (image + texte) */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.03);
         }
 
         .logo h2 {
@@ -658,6 +670,7 @@
             border-radius: 5px;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -704,6 +717,12 @@
             .card {
                 max-width: 320px;
             }
+            .logo-img {
+                height: 35px;
+            }
+            .logo h2 {
+                font-size: 22px;
+            }
         }
 
         img {
@@ -715,7 +734,11 @@
 <body>
     <nav class="navbar">
         <div class="container nav-container">
-            <div class="logo"><h2>SDC<span>. Impact</span></h2></div>
+            <div class="logo">
+                <!-- Logo image ajoutée à gauche du texte de l'entreprise -->
+                <img src="siloe/logo.jpeg" alt="Logo Siloé Design & Communication" class="logo-img" loading="eager">
+                <h2>SDC<span>. Impact</span></h2>
+            </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#business">Business</a></li>
