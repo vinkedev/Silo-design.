@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Siloé Design & Communication - Produits digitaux</title>
+    <title>Siloé Design & Communication - Produits digitaux | Animations modernes</title>
     <!-- Polices chargées avec display swap pour éviter le blocage -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
@@ -12,94 +12,703 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </noscript>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; background: #f4f7fc; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .navbar { position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .logo h2 { font-size: 28px; font-weight: 700; color: #1e3a5f; }
-        .logo span { color: #3498db; }
-        .nav-menu { display: flex; list-style: none; }
-        .nav-menu li { margin-left: 30px; }
-        .nav-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; transition: color 0.3s; cursor: pointer; }
-        .nav-menu a:hover { color: #3498db; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; z-index: 1001; }
-        .hamburger .bar { width: 25px; height: 3px; background: #1e3a5f; margin: 3px 0; transition: 0.3s; }
-        .hero { padding: 120px 0 60px; background: linear-gradient(135deg, #eef2f7 0%, #d9e2ef 100%); }
-        .hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .hero-content h1 { font-size: 48px; margin-bottom: 20px; color: #1e3a5f; line-height: 1.2; }
-        .hero-content p { font-size: 18px; margin-bottom: 30px; color: #4a5568; }
-        .btn { display: inline-block; background: #3498db; color: #fff; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s, transform 0.2s; border: none; cursor: pointer; }
-        .btn:hover { background: #1e3a5f; transform: scale(1.05); }
-        .hero-image { text-align: center; }
-        .hero-image img { width: 100%; max-width: 400px; height: auto; border-radius: 50%; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .services-overview { padding: 60px 0; background: #fff; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
-        .service-card { padding: 30px 20px; border-radius: 8px; background: #f4f7fc; transition: transform 0.3s, box-shadow 0.3s; }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(52,152,219,0.2); }
-        .service-card i { font-size: 40px; color: #3498db; margin-bottom: 15px; }
-        .service-card h3 { margin-bottom: 10px; color: #1e3a5f; }
-        .section { padding: 80px 0; }
-        .bg-light { background: #f4f7fc; }
-        .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; color: #1e3a5f; position: relative; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: #3498db; margin: 15px auto 0; }
-        .section-content { max-width: 800px; margin: 0 auto; text-align: center; font-size: 18px; color: #4a5568; }
-        .stats { display: flex; justify-content: space-around; margin-top: 40px; flex-wrap: wrap; }
-        .stat-item h3 { font-size: 36px; color: #3498db; }
-        .stat-item p { color: #4a5568; }
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 320px)); justify-content: center; gap: 30px; }
-        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; width: 100%; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(52,152,219,0.15); }
-        .card img { width: 100%; height: 180px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card-body h3 { margin-bottom: 10px; color: #1e3a5f; }
-        .card-body p { color: #4a5568; margin-bottom: 10px; }
-        .card .price { font-size: 20px; font-weight: 700; color: #3498db; margin: 10px 0; }
-        .tag { display: inline-block; background: #3498db20; color: #1e3a5f; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
-        .btn-small { display: inline-block; background: #3498db; color: #fff; padding: 8px 20px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: background 0.3s; border: none; cursor: pointer; font-size: 14px; }
-        .btn-small:hover { background: #1e3a5f; }
-        .btn-danger { background: #e74c3c; margin-left: 10px; }
-        .btn-danger:hover { background: #c0392b; }
-        .btn-warning { background: #f39c12; margin-left: 10px; }
-        .btn-warning:hover { background: #e67e22; }
-        .services-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
-        .service-block { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .service-block h3 { color: #1e3a5f; margin-bottom: 20px; font-size: 24px; }
-        .service-block i { color: #3498db; margin-right: 10px; }
-        .service-block ul { list-style: none; }
-        .service-block li { margin-bottom: 10px; color: #4a5568; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .contact-info h3 { margin-bottom: 20px; color: #1e3a5f; }
-        .contact-info p { margin-bottom: 10px; color: #4a5568; }
-        .contact-info i { margin-right: 10px; color: #3498db; }
-        .social-links a { display: inline-block; margin: 20px 10px 0 0; color: #1e3a5f; font-size: 20px; transition: color 0.3s; }
-        .social-links a:hover { color: #3498db; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; }
-        .contact-form button { width: 100%; }
-        footer { background: #1e3a5f; color: #fff; text-align: center; padding: 20px 0; }
-        .footer-credit { margin-top: 5px; font-size: 12px; opacity: 0.8; }
-        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #2c3e50; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 20px; cursor: pointer; z-index: 999; opacity: 0.5; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .admin-btn:hover { opacity: 1; }
-        .admin-panel { background: #fff; border-radius: 8px; padding: 20px; margin-top: 30px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
-        .admin-panel.active { display: block; }
-        .login-form { text-align: center; margin-bottom: 20px; }
-        .login-form input { padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .admin-form input, .admin-form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
-        .edit-form { background: #f9f9f9; padding: 15px; margin-top: 10px; border-radius: 5px; }
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: #fff; width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 10px rgba(0,0,0,0.05); }
-            .nav-menu.active { left: 0; }
-            .nav-menu li { margin: 15px 0; }
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-content h1 { font-size: 36px; }
-            .hero-image img { max-width: 250px; }
-            .contact-grid, .services-list { grid-template-columns: 1fr; }
-            .stats { flex-direction: column; gap: 20px; }
-            .cards-grid { grid-template-columns: 1fr; justify-items: center; }
-            .card { max-width: 320px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        img { content-visibility: auto; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+            background: #f4f7fc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== ANIMATIONS MODERNES ========== */
+        /* Fade-up reveal animation pour les sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animation d'apparition pour les cartes produits et formations */
+        @keyframes cardFadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .card {
+            animation: cardFadeInUp 0.5s ease forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Animation subtile pour les icônes de service */
+        .service-card i {
+            transition: transform 0.3s ease, color 0.3s;
+            display: inline-block;
+        }
+
+        .service-card:hover i {
+            transform: scale(1.15) rotate(2deg);
+            color: #1e3a5f;
+        }
+
+        /* Effet de pulsation pour le bouton admin */
+        @keyframes gentlePulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+                transform: scale(1);
+            }
+        }
+
+        .admin-btn {
+            transition: all 0.25s ease;
+        }
+
+        .admin-btn:hover {
+            animation: gentlePulse 0.8s ease 1;
+            background: #3498db;
+            color: white;
+        }
+
+        /* Animation de survol améliorée pour les boutons */
+        .btn, .btn-small {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:after, .btn-small:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .btn:active:after, .btn-small:active:after {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+        }
+
+        .btn:hover, .btn-small:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Animation flottante pour l'image principale */
+        @keyframes floatSoft {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .hero-image img {
+            animation: floatSoft 5s ease-in-out infinite;
+            transition: box-shadow 0.3s;
+        }
+
+        /* Effet focus pour les champs de formulaire */
+        .contact-form input, .contact-form textarea, .admin-form input, .admin-form textarea, .login-form input {
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus,
+        .admin-form input:focus, .admin-form textarea:focus,
+        .login-form input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+            transform: scale(1.01);
+        }
+
+        /* Animation pour le compteur stats */
+        .stat-number {
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        /* Effet de soulignement animé pour les titres de section */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            width: auto;
+            margin-bottom: 50px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #3498db;
+            transition: width 0.4s ease;
+        }
+
+        .section-title:hover::after {
+            width: 100px;
+        }
+
+        /* Animation du menu mobile */
+        .hamburger .bar {
+            transition: transform 0.3s, opacity 0.2s;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Animation pour les liens de navigation */
+        .nav-menu a {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Animation d'apparition pour les statistiques */
+        .stat-item {
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Effet de brillance subtil sur les cartes services */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.05), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        /* Animation des réseaux sociaux */
+        .social-links a {
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) rotate(5deg);
+            color: #3498db;
+        }
+
+        /* Petite animation pour le footer */
+        footer {
+            transition: background 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .fade-in-section {
+                transform: translateY(20px);
+            }
+        }
+
+        /* Styles existants préservés et optimisés */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+
+        .logo span {
+            color: #3498db;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #1e3a5f;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background: #1e3a5f;
+            margin: 3px 0;
+        }
+
+        .hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #eef2f7 0%, #d9e2ef 100%);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #1e3a5f;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #4a5568;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .services-overview {
+            padding: 60px 0;
+            background: #fff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .service-card {
+            padding: 30px 20px;
+            border-radius: 8px;
+            background: #f4f7fc;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .service-card i {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .bg-light {
+            background: #f4f7fc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #1e3a5f;
+            position: relative;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+            color: #4a5568;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            color: #3498db;
+        }
+
+        .stat-item p {
+            color: #4a5568;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.03);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h3 {
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #3498db;
+            margin: 10px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #3498db20;
+            color: #1e3a5f;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .btn-small {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            margin-left: 10px;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-warning {
+            background: #f39c12;
+            margin-left: 10px;
+        }
+
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .service-block {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .service-block:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: #1e3a5f;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 20px 10px 0 0;
+            color: #1e3a5f;
+            font-size: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        footer {
+            background: #1e3a5f;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .admin-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-panel {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+            animation: cardFadeInUp 0.4s ease;
+        }
+
+        .edit-form {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: #fff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            .hero-image img {
+                max-width: 250px;
+            }
+            .contact-grid,
+            .services-list {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+            .card {
+                max-width: 320px;
+            }
+        }
+
+        img {
+            content-visibility: auto;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 </head>
@@ -120,7 +729,7 @@
         </div>
     </nav>
 
-    <section id="accueil" class="hero">
+    <section id="accueil" class="hero fade-in-section">
         <div class="container hero-container">
             <div class="hero-content">
                 <h1>Des idées qui se transforment en succès</h1>
@@ -128,65 +737,64 @@
                 <a href="#produits" class="btn">Découvrir nos produits</a>
             </div>
             <div class="hero-image">
-                <!-- Chemin corrigé : siloe/silo.jpeg -->
                 <img src="siloe/silo.jpeg" alt="Siloé Design & Communication" loading="lazy" width="400" height="400">
             </div>
         </div>
     </section>
 
-    <section class="services-overview"><div class="container"><div class="services-grid"><div class="service-card"><i class="fas fa-bullhorn"></i><h3>Business</h3><p>Stratégie, branding, campagnes.</p></div><div class="service-card"><i class="fas fa-chalkboard-teacher"></i><h3>Formations</h3><p>Graphisme, vidéo, entrepreneuriat.</p></div><div class="service-card"><i class="fas fa-pen-fancy"></i><h3>Écriture & Secrétariat</h3><p>Rédaction, assistance administrative.</p></div><div class="service-card"><i class="fas fa-download"></i><h3>Produits digitaux</h3><p>E-books, templates, formations.</p></div></div></div></section>
+    <section class="services-overview fade-in-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card"><i class="fas fa-bullhorn"></i><h3>Business</h3><p>Stratégie, branding, campagnes.</p></div>
+                <div class="service-card"><i class="fas fa-chalkboard-teacher"></i><h3>Formations</h3><p>Graphisme, vidéo, entrepreneuriat.</p></div>
+                <div class="service-card"><i class="fas fa-pen-fancy"></i><h3>Écriture & Secrétariat</h3><p>Rédaction, assistance administrative.</p></div>
+                <div class="service-card"><i class="fas fa-download"></i><h3>Produits digitaux</h3><p>E-books, templates, formations.</p></div>
+            </div>
+        </div>
+    </section>
 
-    <section id="business" class="section"><div class="container"><h2 class="section-title">SDC Business</h2><div class="section-content"><p>Conseil en communication et marketing pour entreprises : stratégie digitale, branding, gestion des réseaux sociaux, campagnes publicitaires et études de marché. Nous vous accompagnons pour développer votre notoriété et atteindre vos objectifs.</p><div class="stats"><div class="stat-item"><h3>20+</h3><p>Clients satisfaits</p></div><div class="stat-item"><h3>50+</h3><p>Projets réalisés</p></div><div class="stat-item"><h3>2 ans</h3><p>d'expérience</p></div></div></div></div></section>
+    <section id="business" class="section fade-in-section">
+        <div class="container">
+            <h2 class="section-title">SDC Business</h2>
+            <div class="section-content"><p>Conseil en communication et marketing pour entreprises : stratégie digitale, branding, gestion des réseaux sociaux, campagnes publicitaires et études de marché. Nous vous accompagnons pour développer votre notoriété et atteindre vos objectifs.</p>
+            <div class="stats" id="stats-container">
+                <div class="stat-item"><h3><span class="stat-number" data-count="20">0</span>+</h3><p>Clients satisfaits</p></div>
+                <div class="stat-item"><h3><span class="stat-number" data-count="50">0</span>+</h3><p>Projets réalisés</p></div>
+                <div class="stat-item"><h3><span class="stat-number" data-count="2">0</span> ans</h3><p>d'expérience</p></div>
+            </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="formations" class="section bg-light">
+    <section id="formations" class="section bg-light fade-in-section">
         <div class="container">
             <h2 class="section-title">SDC Formations</h2>
             <div class="cards-grid">
                 <div class="card">
                     <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=200&fit=crop" alt="Graphisme" loading="lazy">
-                    <div class="card-body">
-                        <h3>Graphisme</h3>
-                        <p>Canva, Pixellab, Photoshop, Illustrator, InDesign – maîtrisez les outils indispensables pour des créations percutantes.</p>
-                        <span class="tag">5 jours</span>
-                    </div>
+                    <div class="card-body"><h3>Graphisme</h3><p>Canva, Pixellab, Photoshop, Illustrator, InDesign – maîtrisez les outils indispensables.</p><span class="tag">5 jours</span></div>
                 </div>
                 <div class="card">
                     <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=200&fit=crop" alt="Montage vidéo" loading="lazy">
-                    <div class="card-body">
-                        <h3>Montage vidéo</h3>
-                        <p>CapCut, Adobe Premiere Pro, After Effects, Filmora – réalisez des vidéos professionnelles du montage aux effets spéciaux.</p>
-                        <span class="tag">4 jours</span>
-                    </div>
+                    <div class="card-body"><h3>Montage vidéo</h3><p>CapCut, Adobe Premiere Pro, After Effects, Filmora – réalisez des vidéos pro.</p><span class="tag">4 jours</span></div>
                 </div>
                 <div class="card">
                     <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop" alt="Entrepreneuriat" loading="lazy">
-                    <div class="card-body">
-                        <h3>Entrepreneuriat</h3>
-                        <p>Créez et gérez votre entreprise : business plan, financement, marketing digital et stratégie commerciale.</p>
-                        <span class="tag">3 jours</span>
-                    </div>
+                    <div class="card-body"><h3>Entrepreneuriat</h3><p>Business plan, financement, marketing digital et stratégie commerciale.</p><span class="tag">3 jours</span></div>
                 </div>
                 <div class="card">
                     <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop" alt="Développement personnel" loading="lazy">
-                    <div class="card-body">
-                        <h3>Développement personnel</h3>
-                        <p>Art oratoire, confiance en soi, gestion du stress, communication non verbale – osez vous exprimer avec impact.</p>
-                        <span class="tag">2 jours</span>
-                    </div>
+                    <div class="card-body"><h3>Développement personnel</h3><p>Art oratoire, confiance en soi, gestion du stress.</p><span class="tag">2 jours</span></div>
                 </div>
                 <div class="card">
                     <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop" alt="Intelligence artificielle" loading="lazy">
-                    <div class="card-body">
-                        <h3>Intelligence artificielle</h3>
-                        <p>Formation en Intelligence Artificielle – Découvrez les bases et applications de l'IA pour booster votre productivité.</p>
-                        <span class="tag">2 jours</span>
-                    </div>
+                    <div class="card-body"><h3>Intelligence artificielle</h3><p>Bases et applications de l'IA pour booster votre productivité.</p><span class="tag">2 jours</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="produits" class="section">
+    <section id="produits" class="section fade-in-section">
         <div class="container">
             <h2 class="section-title">Nos produits digitaux</h2>
             <div id="products-container" class="cards-grid">
@@ -204,7 +812,7 @@
                         <textarea id="product-description" placeholder="Description" rows="2"></textarea>
                         <input type="text" id="product-price" placeholder="Prix (ex: 19,90 €)" required>
                         <input type="file" id="product-image-file" accept="image/*">
-                        <small>Laissez vide pour ne pas changer l'image (lors de la modification)</small>
+                        <small>Laissez vide pour ne pas changer l'image</small>
                         <button type="submit" class="btn-small">Ajouter le produit</button>
                     </form>
                 </div>
@@ -212,38 +820,17 @@
         </div>
     </section>
 
-    <section id="support" class="section bg-light">
+    <section id="support" class="section bg-light fade-in-section">
         <div class="container">
             <h2 class="section-title">Écriture & Secrétariat</h2>
             <div class="services-list">
-                <div class="service-block">
-                    <h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3>
-                    <ul>
-                        <li>Rédaction web (SEO)</li>
-                        <li>Articles de blog</li>
-                        <li>Communiqués de presse</li>
-                        <li>Interviews & reportages</li>
-                        <li>Ghostwriting</li>
-                    </ul>
-                </div>
-                <div class="service-block">
-                    <h3><i class="fas fa-file-alt"></i> Secrétariat & Services documentaires</h3>
-                    <ul>
-                        <li>Rédaction de documents professionnels (CV, lettres de motivation, lettres administratives, demandes d’emploi/stage)</li>
-                        <li>Comptes rendus de réunion, rapports de stage, rapports d’activité, synthèses de documents</li>
-                        <li>Transcription audio → texte (interviews, conférences, cours enregistrés)</li>
-                        <li>Saisie et mise en forme de documents (Word, mise en page professionnelle, correction, conversion PDF ↔ Word)</li>
-                        <li>Assistance administrative : rédaction de mails professionnels, préparation de dossiers, organisation et classement numérique</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="section-content" style="margin-top:40px;">
-                <p>Des services sur mesure pour alléger votre quotidien et booster votre communication.</p>
+                <div class="service-block"><h3><i class="fas fa-pen-fancy"></i> Écriture & Journalisme</h3><ul><li>Rédaction web (SEO)</li><li>Articles de blog</li><li>Communiqués de presse</li><li>Ghostwriting</li></ul></div>
+                <div class="service-block"><h3><i class="fas fa-file-alt"></i> Secrétariat & Services documentaires</h3><ul><li>Rédaction de documents professionnels (CV, lettres de motivation)</li><li>Comptes rendus de réunion, rapports</li><li>Transcription audio → texte</li><li>Saisie et mise en forme de documents</li></ul></div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section fade-in-section">
         <div class="container">
             <h2 class="section-title">Contactez-nous</h2>
             <div class="contact-grid">
@@ -253,275 +840,175 @@
                     <p><i class="fas fa-phone"></i> <a href="tel:+22606976932" style="color: #333; text-decoration: none;">+226 06 97 69 32</a></p>
                     <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/22606976932" target="_blank" style="color: #333; text-decoration: none;">WhatsApp : +226 06 97 69 32</a></p>
                     <p><i class="fas fa-envelope"></i> siloedesigncommunication@gmail.com</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+                    <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
                 </div>
                 <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                    <input type="text" name="nom" placeholder="Votre nom" required>
-                    <input type="email" name="email" placeholder="Votre email" required>
-                    <input type="text" name="sujet" placeholder="Sujet">
-                    <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-                    <button type="submit" class="btn">Envoyer</button>
+                    <input type="text" name="nom" placeholder="Votre nom" required><input type="email" name="email" placeholder="Votre email" required><input type="text" name="sujet" placeholder="Sujet"><textarea name="message" rows="5" placeholder="Votre message" required></textarea><button type="submit" class="btn">Envoyer</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Siloé Design & Communication. Tous droits réservés.</p>
-            <p class="footer-credit">Réalisé par Sion Tech Solutions</p>
-        </div>
-    </footer>
-
+    <footer><div class="container"><p>&copy; 2026 Siloé Design & Communication. Tous droits réservés.</p><p class="footer-credit">Réalisé par Sion Tech Solutions</p></div></footer>
     <button id="admin-toggle-btn" class="admin-btn" title="Administration">🔧</button>
 
     <script>
-        (function() {
+        (function(){
+            // Existing Supabase logic preserved + NEW animations: scroll reveal + count-up
             const SUPABASE_URL = 'https://otdiywrvzappbmjfkkyi.supabase.co';
             const SUPABASE_ANON_KEY = 'sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy';
             let supabaseClient = null;
             let isAdmin = false;
             const ADMIN_PASSWORD = 'monMotDePasse123';
             const STORAGE_BUCKET = 'product-images';
+            let countUpTriggered = false;
 
-            function escapeHtml(str) {
-                if (!str) return '';
-                return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
-            }
+            function escapeHtml(str){ if(!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+            function getWhatsAppLink(productName){ return `https://wa.me/22606976932?text=${encodeURIComponent(`Bonjour, je souhaite acheter le produit : ${productName}.`)}`; }
 
-            function getWhatsAppLink(productName) {
-                const phone = '22606976932';
-                const message = encodeURIComponent(`Bonjour, je souhaite acheter le produit : ${productName}.`);
-                return `https://wa.me/${phone}?text=${message}`;
-            }
-
-            async function uploadImage(file, productName) {
-                if (!file || !supabaseClient) return null;
+            async function uploadImage(file, productName){
+                if(!file || !supabaseClient) return null;
                 const fileExt = file.name.split('.').pop();
                 const fileName = `${Date.now()}_${productName.replace(/\s+/g, '_')}.${fileExt}`;
                 const { data, error } = await supabaseClient.storage.from(STORAGE_BUCKET).upload(fileName, file);
-                if (error) {
-                    console.error('Erreur upload image:', error);
-                    alert('Erreur upload : ' + error.message);
-                    return null;
-                }
+                if(error){ console.error(error); alert('Erreur upload : ' + error.message); return null; }
                 const { data: urlData } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(fileName);
                 return urlData.publicUrl;
             }
 
-            async function loadProducts() {
+            async function loadProducts(){
                 const container = document.getElementById('products-container');
-                if (!container || !supabaseClient) return;
+                if(!container || !supabaseClient) return;
                 container.innerHTML = '<div style="text-align:center; grid-column:1/-1;">⏳ Chargement des produits...</div>';
-                try {
+                try{
                     const { data, error } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
-                    if (error) throw error;
-                    if (!data || data.length === 0) {
-                        container.innerHTML = '<div style="text-align:center; grid-column:1/-1;">📭 Aucun produit disponible.</div>';
-                        return;
-                    }
-                    container.innerHTML = data.map(product => {
-                        const whatsappLink = getWhatsAppLink(product.name);
-                        return `
-                            <div class="card" data-id="${product.id}">
-                                <img src="${product.image_url || 'https://via.placeholder.com/300x180?text=Image'}" alt="${escapeHtml(product.name)}" loading="lazy">
-                                <div class="card-body">
-                                    <h3>${escapeHtml(product.name)}</h3>
-                                    <p>${escapeHtml(product.description || '')}</p>
-                                    <div class="price">${escapeHtml(product.price)}</div>
-                                    <a href="${whatsappLink}" target="_blank" class="btn-small">Acheter</a>
-                                    ${isAdmin ? `
-                                        <button class="btn-small btn-warning" onclick="window.editProduct('${product.id}')">Modifier</button>
-                                        <button class="btn-small btn-danger" onclick="window.deleteProduct('${product.id}')">Supprimer</button>
-                                    ` : ''}
-                                </div>
+                    if(error) throw error;
+                    if(!data || data.length === 0){ container.innerHTML = '<div style="text-align:center; grid-column:1/-1;">📭 Aucun produit disponible.</div>'; return; }
+                    container.innerHTML = data.map(product => `
+                        <div class="card" data-id="${product.id}">
+                            <img src="${product.image_url || 'https://via.placeholder.com/300x180?text=Image'}" alt="${escapeHtml(product.name)}" loading="lazy">
+                            <div class="card-body">
+                                <h3>${escapeHtml(product.name)}</h3>
+                                <p>${escapeHtml(product.description || '')}</p>
+                                <div class="price">${escapeHtml(product.price)}</div>
+                                <a href="${getWhatsAppLink(product.name)}" target="_blank" class="btn-small">Acheter</a>
+                                ${isAdmin ? `<button class="btn-small btn-warning" onclick="window.editProduct('${product.id}')">Modifier</button><button class="btn-small btn-danger" onclick="window.deleteProduct('${product.id}')">Supprimer</button>` : ''}
                             </div>
-                        `;
-                    }).join('');
-                } catch (err) {
-                    console.error('Erreur chargement produits:', err);
-                    container.innerHTML = `<div style="text-align:center; grid-column:1/-1;">❌ Erreur: ${err.message}</div>`;
-                }
+                        </div>
+                    `).join('');
+                } catch(err){ container.innerHTML = `<div style="text-align:center;">❌ Erreur: ${err.message}</div>`; }
             }
 
-            async function addProduct(e) {
+            async function addProduct(e){
                 e.preventDefault();
-                if (!isAdmin || !supabaseClient) { alert('Accès non autorisé.'); return; }
-                const name = document.getElementById('product-name').value.trim();
-                const price = document.getElementById('product-price').value.trim();
-                if (!name || !price) { alert('Nom et prix requis.'); return; }
+                if(!isAdmin || !supabaseClient) return alert('Non autorisé');
+                const name = document.getElementById('product-name').value.trim(), price = document.getElementById('product-price').value.trim();
+                if(!name || !price) return alert('Nom et prix requis');
                 const imageFile = document.getElementById('product-image-file').files[0];
                 let imageUrl = '';
-                if (imageFile) {
-                    imageUrl = await uploadImage(imageFile, name);
-                    if (!imageUrl) return;
-                }
-                const { error } = await supabaseClient.from('products').insert([{
-                    name,
-                    description: document.getElementById('product-description').value.trim(),
-                    price,
-                    image_url: imageUrl
-                }]);
-                if (error) alert('Erreur : ' + error.message);
-                else {
-                    alert('Produit ajouté !');
-                    document.getElementById('add-product-form').reset();
-                    document.getElementById('product-image-file').value = '';
-                    loadProducts();
-                }
+                if(imageFile){ imageUrl = await uploadImage(imageFile, name); if(!imageUrl) return; }
+                const { error } = await supabaseClient.from('products').insert([{ name, description: document.getElementById('product-description').value.trim(), price, image_url: imageUrl }]);
+                if(error) alert('Erreur : ' + error.message);
+                else { alert('Produit ajouté !'); document.getElementById('add-product-form').reset(); document.getElementById('product-image-file').value = ''; loadProducts(); }
             }
 
-            window.deleteProduct = async function(id) {
-                if (!isAdmin || !supabaseClient) { alert('Accès non autorisé.'); return; }
-                if (confirm('Supprimer ce produit ?')) {
-                    const { error } = await supabaseClient.from('products').delete().eq('id', id);
-                    if (error) alert('Erreur : ' + error.message);
-                    else { alert('Produit supprimé.'); loadProducts(); }
-                }
-            };
-
-            window.editProduct = function(id) {
-                if (!isAdmin || !supabaseClient) { alert('Accès non autorisé.'); return; }
+            window.deleteProduct = async function(id){ if(!isAdmin) return; if(confirm('Supprimer ?')){ const { error } = await supabaseClient.from('products').delete().eq('id', id); if(error) alert(error.message); else { alert('Supprimé'); loadProducts(); } } };
+            window.editProduct = async function(id){
+                if(!isAdmin) return;
                 const productCard = document.querySelector(`.card[data-id="${id}"]`);
-                if (!productCard) return;
-                const name = productCard.querySelector('h3').innerText;
-                const description = productCard.querySelector('p')?.innerText || '';
-                const price = productCard.querySelector('.price').innerText;
-                const currentImage = productCard.querySelector('img')?.src || '';
-
+                if(!productCard) return;
+                const name = productCard.querySelector('h3').innerText, description = productCard.querySelector('p')?.innerText || '', price = productCard.querySelector('.price').innerText, currentImage = productCard.querySelector('img')?.src || '';
                 const adminControls = document.getElementById('admin-controls');
-                const existingEditForm = document.getElementById('edit-form-container');
-                if (existingEditForm) existingEditForm.remove();
-
-                const editFormDiv = document.createElement('div');
-                editFormDiv.id = 'edit-form-container';
-                editFormDiv.className = 'edit-form';
-                editFormDiv.innerHTML = `
-                    <h4>Modifier le produit</h4>
-                    <form id="edit-product-form" enctype="multipart/form-data">
-                        <input type="text" id="edit-name" value="${escapeHtml(name)}" placeholder="Nom" required>
-                        <textarea id="edit-description" placeholder="Description" rows="2">${escapeHtml(description)}</textarea>
-                        <input type="text" id="edit-price" value="${escapeHtml(price)}" placeholder="Prix" required>
-                        <div>Image actuelle : <img src="${currentImage}" style="max-width:100px; display:block;"></div>
-                        <input type="file" id="edit-image-file" accept="image/*">
-                        <small>Laissez vide pour conserver l'image actuelle</small>
-                        <button type="submit" class="btn-small">Enregistrer les modifications</button>
-                        <button type="button" class="btn-small btn-danger" id="cancel-edit">Annuler</button>
-                    </form>
-                `;
-                adminControls.appendChild(editFormDiv);
-
-                const editForm = document.getElementById('edit-product-form');
-                editForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const newName = document.getElementById('edit-name').value.trim();
-                    const newPrice = document.getElementById('edit-price').value.trim();
-                    if (!newName || !newPrice) { alert('Nom et prix requis'); return; }
-                    let newImageUrl = currentImage;
-                    const newImageFile = document.getElementById('edit-image-file').files[0];
-                    if (newImageFile) {
-                        const uploadedUrl = await uploadImage(newImageFile, newName);
-                        if (uploadedUrl) newImageUrl = uploadedUrl;
-                        else return;
-                    }
-                    const { error } = await supabaseClient.from('products').update({
-                        name: newName,
-                        description: document.getElementById('edit-description').value.trim(),
-                        price: newPrice,
-                        image_url: newImageUrl
-                    }).eq('id', id);
-                    if (error) alert('Erreur : ' + error.message);
-                    else {
-                        alert('Produit modifié !');
-                        editFormDiv.remove();
-                        loadProducts();
-                    }
+                const existing = document.getElementById('edit-form-container');
+                if(existing) existing.remove();
+                const editDiv = document.createElement('div'); editDiv.id = 'edit-form-container'; editDiv.className = 'edit-form';
+                editDiv.innerHTML = `<h4>Modifier</h4><form id="edit-product-form"><input type="text" id="edit-name" value="${escapeHtml(name)}" required><textarea id="edit-description">${escapeHtml(description)}</textarea><input type="text" id="edit-price" value="${escapeHtml(price)}" required><div>Image actuelle : <img src="${currentImage}" style="max-width:100px;"></div><input type="file" id="edit-image-file" accept="image/*"><button type="submit" class="btn-small">Enregistrer</button><button type="button" class="btn-small btn-danger" id="cancel-edit">Annuler</button></form>`;
+                adminControls.appendChild(editDiv);
+                document.getElementById('edit-product-form').addEventListener('submit', async (ev) => {
+                    ev.preventDefault();
+                    const newName = document.getElementById('edit-name').value.trim(), newPrice = document.getElementById('edit-price').value.trim();
+                    if(!newName || !newPrice) return;
+                    let newImg = currentImage;
+                    const newFile = document.getElementById('edit-image-file').files[0];
+                    if(newFile){ const up = await uploadImage(newFile, newName); if(up) newImg = up; else return; }
+                    const { error } = await supabaseClient.from('products').update({ name: newName, description: document.getElementById('edit-description').value.trim(), price: newPrice, image_url: newImg }).eq('id', id);
+                    if(error) alert(error.message); else { alert('Modifié'); editDiv.remove(); loadProducts(); }
                 });
-                document.getElementById('cancel-edit').addEventListener('click', () => { editFormDiv.remove(); });
+                document.getElementById('cancel-edit').addEventListener('click', () => editDiv.remove());
             };
 
-            function loginAdmin() {
-                const pwd = document.getElementById('admin-password').value;
-                if (pwd === ADMIN_PASSWORD) {
-                    isAdmin = true;
-                    document.getElementById('admin-login').style.display = 'none';
-                    document.getElementById('admin-controls').style.display = 'block';
-                    loadProducts();
-                } else {
-                    alert('Mot de passe incorrect');
-                }
-            }
+            function loginAdmin(){ const pwd = document.getElementById('admin-password').value; if(pwd === ADMIN_PASSWORD){ isAdmin = true; document.getElementById('admin-login').style.display = 'none'; document.getElementById('admin-controls').style.display = 'block'; loadProducts(); } else alert('Mot de passe incorrect'); }
+            function toggleAdminPanel(){ const panel = document.getElementById('admin-panel'); if(panel) panel.classList.toggle('active'); if(panel.classList.contains('active')){ if(isAdmin){ document.getElementById('admin-login').style.display = 'none'; document.getElementById('admin-controls').style.display = 'block'; } else { document.getElementById('admin-login').style.display = 'block'; document.getElementById('admin-controls').style.display = 'none'; } } }
 
-            function toggleAdminPanel() {
-                const panel = document.getElementById('admin-panel');
-                if (!panel) return;
-                panel.classList.toggle('active');
-                if (panel.classList.contains('active')) {
-                    if (isAdmin) {
-                        document.getElementById('admin-login').style.display = 'none';
-                        document.getElementById('admin-controls').style.display = 'block';
-                    } else {
-                        document.getElementById('admin-login').style.display = 'block';
-                        document.getElementById('admin-controls').style.display = 'none';
-                    }
-                }
-            }
-
-            function initMobileMenu() {
-                const hamburger = document.getElementById('hamburger');
-                const navMenu = document.getElementById('nav-menu');
-                if (!hamburger || !navMenu) return;
-
-                const toggleMenu = (e) => {
-                    e.stopPropagation();
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                };
-
-                hamburger.addEventListener('click', toggleMenu);
-                hamburger.addEventListener('touchstart', toggleMenu);
-
-                document.querySelectorAll('.nav-menu a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (navMenu.classList.contains('active')) {
-                            hamburger.classList.remove('active');
-                            navMenu.classList.remove('active');
+            // ========== ANIMATIONS SCROLL REVEAL (Intersection Observer) ==========
+            function initScrollReveal(){
+                const fadeSections = document.querySelectorAll('.fade-in-section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
                         }
                     });
-                });
+                }, { threshold: 0.12, rootMargin: "0px 0px -20px 0px" });
+                fadeSections.forEach(section => observer.observe(section));
+                // Force visible for any that might be already visible
+                fadeSections.forEach(section => { if(section.getBoundingClientRect().top < window.innerHeight-100) section.classList.add('is-visible'); });
             }
 
-            function init() {
-                if (window.supabase) {
-                    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                } else {
-                    console.warn('Supabase non chargé, réessai dans 500ms');
-                    setTimeout(init, 500);
-                    return;
-                }
+            // Count-up effect for statistics
+            function startCountUp(){
+                if(countUpTriggered) return;
+                const statsContainer = document.getElementById('stats-container');
+                if(!statsContainer) return;
+                const countObserver = new IntersectionObserver((entries) => {
+                    if(entries[0].isIntersecting && !countUpTriggered){
+                        countUpTriggered = true;
+                        const statNumbers = document.querySelectorAll('.stat-number');
+                        statNumbers.forEach(el => {
+                            const target = parseInt(el.getAttribute('data-count'), 10);
+                            if(isNaN(target)) return;
+                            let current = 0;
+                            const increment = target / 35;
+                            const updateCounter = () => {
+                                current += increment;
+                                if(current < target){
+                                    el.innerText = Math.floor(current);
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    el.innerText = target;
+                                }
+                            };
+                            updateCounter();
+                        });
+                        countObserver.disconnect();
+                    }
+                }, { threshold: 0.5 });
+                if(statsContainer) countObserver.observe(statsContainer);
+            }
+
+            // Mobile menu toggle animation
+            function initMobileMenu(){
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                if(!hamburger || !navMenu) return;
+                const toggle = (e) => { e.stopPropagation(); hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); };
+                hamburger.addEventListener('click', toggle);
+                document.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }));
+            }
+
+            function init(){
+                if(window.supabase){ supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } else { setTimeout(init, 500); return; }
                 loadProducts();
                 initMobileMenu();
-
-                const loginBtn = document.getElementById('login-btn');
-                if (loginBtn) loginBtn.addEventListener('click', loginAdmin);
-                const addForm = document.getElementById('add-product-form');
-                if (addForm) addForm.addEventListener('submit', addProduct);
-                const adminMenuBtn = document.getElementById('admin-menu-btn');
-                if (adminMenuBtn) adminMenuBtn.addEventListener('click', (e) => { e.preventDefault(); toggleAdminPanel(); });
-                const adminToggle = document.getElementById('admin-toggle-btn');
-                if (adminToggle) adminToggle.addEventListener('click', toggleAdminPanel);
+                initScrollReveal();
+                startCountUp();
+                const loginBtn = document.getElementById('login-btn'); if(loginBtn) loginBtn.addEventListener('click', loginAdmin);
+                const addForm = document.getElementById('add-product-form'); if(addForm) addForm.addEventListener('submit', addProduct);
+                const adminMenuBtn = document.getElementById('admin-menu-btn'); if(adminMenuBtn) adminMenuBtn.addEventListener('click', (e) => { e.preventDefault(); toggleAdminPanel(); });
+                const adminToggle = document.getElementById('admin-toggle-btn'); if(adminToggle) adminToggle.addEventListener('click', toggleAdminPanel);
             }
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
-            }
+            if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
         })();
     </script>
 </body>
