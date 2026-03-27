@@ -278,17 +278,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;  /* Augmenté pour accueillir le logo plus grand */
+            height: 80px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;  /* Espacement augmenté */
+            gap: 15px;
         }
 
         .logo-img {
-            height: 55px;  /* Logo agrandi */
+            height: 55px;
             width: auto;
             object-fit: contain;
             border-radius: 8px;
@@ -300,7 +300,7 @@
         }
 
         .logo h2 {
-            font-size: 30px;  /* Texte légèrement agrandi */
+            font-size: 30px;
             font-weight: 700;
             color: #1e3a5f;
         }
@@ -362,17 +362,17 @@
                 margin: 15px 0;
             }
             .logo-img {
-                height: 42px;  /* Logo adapté au mobile */
+                height: 42px;
             }
             .logo h2 {
-                font-size: 24px;  /* Texte adapté au mobile */
+                font-size: 24px;
             }
             .nav-container {
-                height: 70px;  /* Hauteur légèrement réduite sur mobile */
+                height: 70px;
             }
         }
 
-        /* Autres styles (inchangés) */
+        /* Autres styles */
         .hero {
             padding: 120px 0 60px;
             background: linear-gradient(135deg, #eef2f7 0%, #d9e2ef 100%);
@@ -666,26 +666,175 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
+        /* ========== STYLES ADMIN AMÉLIORÉS ========== */
         .admin-panel {
             background: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 30px;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             display: none;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            transition: all 0.3s ease;
         }
 
         .admin-panel.active {
             display: block;
-            animation: cardFadeInUp 0.4s ease;
+            animation: cardFadeInUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .admin-panel h3 {
+            font-size: 26px;
+            color: #1e3a5f;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .admin-panel h3:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #3498db;
+            border-radius: 3px;
+        }
+
+        .login-form {
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            font-size: 14px;
+            background: #f8fafc;
+        }
+
+        .login-form input:focus {
+            border-color: #3498db;
+            background: #fff;
+        }
+
+        .admin-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+        .form-group textarea + i {
+            top: 22px;
+            transform: none;
+        }
+
+        .admin-form input,
+        .admin-form textarea {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #f8fafc;
+            transition: all 0.2s;
+        }
+
+        .admin-form textarea {
+            border-radius: 20px;
+            padding-top: 12px;
+            resize: vertical;
+        }
+
+        .admin-form input:focus,
+        .admin-form textarea:focus {
+            border-color: #3498db;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            outline: none;
+        }
+
+        .admin-form small {
+            display: block;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .admin-form button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background: #3498db;
+            border: none;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .admin-form button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
         }
 
         .edit-form {
-            background: #f9f9f9;
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 5px;
+            background: #f8fafc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .edit-form h4 {
+            margin-bottom: 15px;
+            color: #1e3a5f;
+        }
+
+        .edit-form .form-group i {
+            left: 12px;
+        }
+
+        .edit-form input,
+        .edit-form textarea {
+            padding-left: 40px;
+        }
+
+        /* Responsive admin */
+        @media (max-width: 768px) {
+            .admin-panel {
+                padding: 20px;
+            }
+            .admin-form {
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -726,7 +875,6 @@
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <!-- Logo agrandi -->
                 <img src="siloe/logo.jpeg" alt="Logo Siloé Design & Communication" class="logo-img" loading="eager">
                 <h2>SDC<span>. Impact</span></h2>
             </div>
@@ -822,10 +970,22 @@
                 <div id="admin-controls" style="display: none;">
                     <h3>Gestion des produits</h3>
                     <form id="add-product-form" class="admin-form" enctype="multipart/form-data">
-                        <input type="text" id="product-name" placeholder="Nom du produit" required>
-                        <textarea id="product-description" placeholder="Description" rows="2"></textarea>
-                        <input type="text" id="product-price" placeholder="Prix (ex: 19,90 €)" required>
-                        <input type="file" id="product-image-file" accept="image/*">
+                        <div class="form-group">
+                            <i class="fas fa-tag"></i>
+                            <input type="text" id="product-name" placeholder="Nom du produit" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-align-left"></i>
+                            <textarea id="product-description" placeholder="Description" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-euro-sign"></i>
+                            <input type="text" id="product-price" placeholder="Prix (ex: 19,90 €)" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-image"></i>
+                            <input type="file" id="product-image-file" accept="image/*">
+                        </div>
                         <small>Laissez vide pour ne pas changer l'image</small>
                         <button type="submit" class="btn-small">Ajouter le produit</button>
                     </form>
@@ -855,7 +1015,6 @@
                     <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/22606976932" target="_blank" style="color: #333; text-decoration: none;">WhatsApp : +226 06 97 69 32</a></p>
                     <p><i class="fas fa-envelope"></i> siloedesigncommunication@gmail.com</p>
                     <div class="social-links">
-                        <!-- Liens mis à jour avec les URLs fournies -->
                         <a href="https://www.facebook.com/profile.php?id=61562088114113" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/sdcimpact?igsh=MWc3cnB2NHlmNzA5NQ==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/thierry-lankoande-850b543a3?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
@@ -942,7 +1101,18 @@
                 const existing = document.getElementById('edit-form-container');
                 if(existing) existing.remove();
                 const editDiv = document.createElement('div'); editDiv.id = 'edit-form-container'; editDiv.className = 'edit-form';
-                editDiv.innerHTML = `<h4>Modifier</h4><form id="edit-product-form"><input type="text" id="edit-name" value="${escapeHtml(name)}" required><textarea id="edit-description">${escapeHtml(description)}</textarea><input type="text" id="edit-price" value="${escapeHtml(price)}" required><div>Image actuelle : <img src="${currentImage}" style="max-width:100px;"></div><input type="file" id="edit-image-file" accept="image/*"><button type="submit" class="btn-small">Enregistrer</button><button type="button" class="btn-small btn-danger" id="cancel-edit">Annuler</button></form>`;
+                editDiv.innerHTML = `
+                    <h4>Modifier le produit</h4>
+                    <form id="edit-product-form" class="admin-form">
+                        <div class="form-group"><i class="fas fa-tag"></i><input type="text" id="edit-name" value="${escapeHtml(name)}" required></div>
+                        <div class="form-group"><i class="fas fa-align-left"></i><textarea id="edit-description">${escapeHtml(description)}</textarea></div>
+                        <div class="form-group"><i class="fas fa-euro-sign"></i><input type="text" id="edit-price" value="${escapeHtml(price)}" required></div>
+                        <div class="form-group"><i class="fas fa-image"></i><input type="file" id="edit-image-file" accept="image/*"></div>
+                        <div><img src="${currentImage}" style="max-width:100px; margin:10px 0; border-radius:8px;"></div>
+                        <button type="submit" class="btn-small">Enregistrer</button>
+                        <button type="button" class="btn-small btn-danger" id="cancel-edit">Annuler</button>
+                    </form>
+                `;
                 adminControls.appendChild(editDiv);
                 document.getElementById('edit-product-form').addEventListener('submit', async (ev) => {
                     ev.preventDefault();
