@@ -310,6 +310,7 @@
             margin-bottom: 12px;
             font-weight: 700;
             line-height: 1.3;
+            color: white;
         }
 
         .hero-content h2 span {
@@ -454,15 +455,44 @@
             background: white;
         }
 
-        .section-title {
+        /* ========== TOUS LES TITRES EN BLEU ========== */
+        .section-title,
+        #services .section-title,
+        #actualites .section-title,
+        #specialites .section-title,
+        #specialites-chirurgicales .section-title,
+        #gynecologie .section-title,
+        #explorations .section-title,
+        #imagerie .section-title,
+        #poles .section-title,
+        #rdv .section-title,
+        #equipe .section-title,
+        #video .section-title,
+        #contact .section-title,
+        .gallery-title,
+        .presentation-title {
             text-align: center;
             font-size: 1.6rem;
             margin-bottom: 35px;
             font-weight: 700;
             position: relative;
+            color: #0077A4 !important;
         }
 
-        .section-title::after {
+        .section-title::after,
+        #services .section-title::after,
+        #actualites .section-title::after,
+        #specialites .section-title::after,
+        #specialites-chirurgicales .section-title::after,
+        #gynecologie .section-title::after,
+        #explorations .section-title::after,
+        #imagerie .section-title::after,
+        #poles .section-title::after,
+        #rdv .section-title::after,
+        #equipe .section-title::after,
+        #video .section-title::after,
+        #contact .section-title::after,
+        .gallery-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
@@ -470,14 +500,8 @@
             transform: translateX(-50%);
             width: 50px;
             height: 3px;
+            background: linear-gradient(90deg, #0077A4, #00b4d8);
             border-radius: 4px;
-        }
-
-        .presentation-title {
-            text-align: center;
-            color: #0077A4;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
         }
 
         @media (min-width: 768px) {
@@ -523,8 +547,8 @@
         }
 
         .badge-category {
-            background: linear-gradient(135deg, #e6f7f0, #d1f0e4);
-            color: #1D8B5D;
+            background: linear-gradient(135deg, #e0f0ff, #cce4f5);
+            color: #0077A4;
             padding: 4px 10px;
             border-radius: 50px;
             font-size: 0.65rem;
@@ -535,7 +559,7 @@
             font-size: 1rem;
             font-weight: 700;
             margin: 8px 20px 5px 20px;
-            color: #0f172a;
+            color: #005a7c;
         }
 
         .card-content {
@@ -592,7 +616,7 @@
 
         .actu-date {
             font-size: 0.7rem;
-            color: #1D8B5D;
+            color: #0077A4;
             font-weight: 600;
             margin-bottom: 8px;
         }
@@ -772,7 +796,7 @@
             background: #f8fafc;
             border-radius: 16px;
             padding: 12px 16px;
-            border-left: 4px solid;
+            border-left: 4px solid #0077A4;
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -785,6 +809,7 @@
             display: block;
             margin-bottom: 4px;
             font-size: 0.9rem;
+            color: #0077A4;
         }
         .specialty-item p {
             font-size: 0.8rem;
@@ -793,7 +818,7 @@
         }
 
         .badge-247 {
-            background: #dc3545;
+            background: #0077A4;
             color: white;
             padding: 2px 8px;
             border-radius: 20px;
@@ -864,21 +889,8 @@
             text-align: center;
             font-size: 1.6rem;
             margin-bottom: 25px;
-            color: #0077A4;
             font-weight: 700;
             position: relative;
-        }
-
-        .gallery-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(90deg, #0077A4, #1D8B5D);
-            border-radius: 4px;
         }
 
         .gallery-grid {
@@ -1127,7 +1139,6 @@
             transform: scale(1.05);
         }
 
-        /* Style pour l'œil */
         .password-wrapper {
             position: relative;
             margin-bottom: 20px;
@@ -1225,46 +1236,6 @@
                 text-align: center;
             }
         }
-
-        /* style pour les sections à partir de "Nos services de soins" - UNIQUEMENT BLEU A PARTIR D'ICI */
-        #services .section-title { color: #0077A4; }
-        #services .section-title::after { background: linear-gradient(90deg, #0077A4, #00b4d8); }
-        #services .badge-category { background: linear-gradient(135deg, #e0f0ff, #cce4f5); color: #0077A4; }
-        
-        #specialites .section-title { color: #0077A4; }
-        #specialites .section-title::after { background: linear-gradient(90deg, #0077A4, #00b4d8); }
-        #specialites .specialty-item { border-left-color: #0077A4; }
-        #specialites .specialty-item strong { color: #0077A4; }
-
-        #specialites-chirurgicales .section-title { color: #0077A4; }
-        #specialites-chirurgicales .section-title::after { background: linear-gradient(90deg, #0077A4, #00b4d8); }
-        #specialites-chirurgicales .specialty-item { border-left-color: #0077A4; }
-        #specialites-chirurgicales .specialty-item strong { color: #0077A4; }
-
-        #gynecologie .section-title { color: #0077A4; }
-        #gynecologie .section-title::after { background: linear-gradient(90deg, #0077A4, #00b4d8); }
-        #gynecologie .specialty-item { border-left-color: #0077A4; }
-        #gynecologie .specialty-item strong { color: #0077A4; }
-
-        #explorations .section-title { color: #0077A4; }
-        #explorations .section-title::after { background: linear-gradient(90deg, #0077A4, #00b4d8); }
-        #explorations .specialty-item { border-left-color: #0077A4; }
-        #explorations .specialty-item strong { color: #0077A4; }
-
-        #imagerie .section-title { color: #0077A4; }
-        #imagerie .section-title::after { background: linear-gradient(90deg, #0077A4, #00b4d8); }
-        #imagerie .specialty-item { border-left-color: #0077A4; }
-        #imagerie .specialty-item strong { color: #0077A4; }
-
-        #poles .section-title { color: #0077A4; }
-        #poles .section-title::after { background: linear-gradient(90deg, #0077A4, #00b4d8); }
-        #poles .specialty-item { border-left-color: #0077A4; }
-        #poles .specialty-item strong { color: #0077A4; }
-        #poles .badge-247 { background: #0077A4; }
-        
-        /* La section équipe garde ses couleurs d'origine */
-        #equipe .team-name { color: #0077A4; }
-        #equipe .team-position { color: #1D8B5D; }
     </style>
 </head>
 <body>
@@ -1361,7 +1332,6 @@
         </div>
     </section>
 
-    <!-- SECTION ACTUALITÉS - DYNAMIQUE -->
     <section id="actualites">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Actualités</h2>
@@ -1369,7 +1339,6 @@
         </div>
     </section>
 
-    <!-- SPÉCIALITÉS MÉDICALES - DYNAMIQUE -->
     <section id="specialites">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Spécialités médicales</h2>
@@ -1377,7 +1346,6 @@
         </div>
     </section>
 
-    <!-- SPÉCIALITÉS CHIRURGICALES - DYNAMIQUE -->
     <section id="specialites-chirurgicales">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Spécialités chirurgicales</h2>
@@ -1385,7 +1353,6 @@
         </div>
     </section>
 
-    <!-- GYNÉCOLOGIE - DYNAMIQUE -->
     <section id="gynecologie">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Gynécologie - Obstétrique</h2>
@@ -1393,7 +1360,6 @@
         </div>
     </section>
 
-    <!-- EXPLORATIONS - DYNAMIQUE -->
     <section id="explorations">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Explorations</h2>
@@ -1401,7 +1367,6 @@
         </div>
     </section>
 
-    <!-- IMAGERIE - DYNAMIQUE -->
     <section id="imagerie">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Imagerie</h2>
@@ -1409,7 +1374,6 @@
         </div>
     </section>
 
-    <!-- Centre de Dialyse (anciennement Équipements spécialisés) -->
     <section id="poles">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Centre de Dialyse</h2>
@@ -1427,7 +1391,6 @@
         </div>
     </section>
 
-    <!-- ÉQUIPE - DYNAMIQUE -->
     <section id="equipe">
         <div class="container">
             <h2 class="section-title animate-on-scroll">Notre équipe</h2>
@@ -1461,7 +1424,6 @@
 
 <div id="imageModal" class="image-modal"><span class="close-image-modal">✕</span><img id="modalImage" src=""></div>
 
-<!-- MODAL LOGIN -->
 <div id="loginModal" class="modal">
     <div class="modal-content" style="max-width:400px;">
         <span class="close-login" style="position:absolute; top:12px; right:18px; font-size:28px; cursor:pointer;">&times;</span>
@@ -1478,18 +1440,15 @@
 </div>
 
 <script>
-    // ========== CONFIGURATION SUPABASE ==========
     const SUPABASE_URL = "https://otdiywrvzappbmjfkkyi.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_tn6FW9OxsqNdKMg9uCuB5A_gZICo-Jy";
     let supabaseClient = null;
     let isAdmin = false;
     const ADMIN_PASSWORD = "wendtoin2016";
 
-    // Compteur pour les clics sur le logo
     let logoClickCount = 0;
     let clickTimeout = null;
 
-    // Attendre que Supabase soit chargé
     function initSupabase() {
         if (window.supabase) {
             supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1502,7 +1461,6 @@
         }
     }
 
-    // ==================== CLIC SECRET SUR LE LOGO ====================
     const secretLogo = document.getElementById('secretAdminLogo');
     if (secretLogo) {
         secretLogo.addEventListener('click', () => {
@@ -1517,7 +1475,6 @@
         });
     }
 
-    // ==================== SLIDER HERO ====================
     const slides = [
         { image: "slide/churigie.jpeg", titre: "Chirurgie moderne", badge: "à votre service", text: "Blocs opératoires de pointe, chirurgie programmée et d'urgence 24h/24", lien: "#specialites-chirurgicales", labelBtn: "Voir nos spécialités chirurgicales" },
         { image: "slide/dialyse.jpg", titre: "Centre d'Hémodialyse", badge: "24h/24", text: "Prise en charge complète de l'insuffisance rénale, disponible nuit et jour, 7j/7", lien: "#poles", labelBtn: "Découvrir le service dialyse" },
@@ -1556,8 +1513,6 @@
 
     function updateButtons() {
         const currentSlide = slides[currentIndex];
-        // Le bouton de gauche (prendre rendez-vous) reste FIXE et pointe toujours vers #rdv
-        // Le bouton de droite (urgence) est DYNAMIQUE et change selon le slide
         heroButtonsContainer.innerHTML = `<a href="#rdv" class="btn btn-primary">Prendre rendez-vous</a><a href="${currentSlide.lien}" class="btn btn-outline" data-tooltip="Appel gratuit 24h/24">Urgence 24/24 <span class="urgences-badge">URGENCE</span></a>`;
     }
 
@@ -1599,7 +1554,6 @@
     document.getElementById('sliderPrev').addEventListener('click', prevSlide);
     document.getElementById('sliderNext').addEventListener('click', nextSlide);
 
-    // ==================== CHARGEMENT PUBLIC DEPUIS SUPABASE ====================
     async function loadPublicActualites() {
         if (!supabaseClient) return;
         const { data, error } = await supabaseClient.from('actualites').select('*').order('created_at', { ascending: false });
@@ -1687,14 +1641,12 @@
         ]);
     }
 
-    // ==================== ADMIN LOGIN ====================
     const loginModal = document.getElementById('loginModal');
     const submitLogin = document.getElementById('submitLoginBtn');
     const closeLogin = document.querySelector('.close-login');
     const togglePasswordBtn = document.getElementById('togglePassword');
     const adminPasswordInput = document.getElementById('adminPassword');
 
-    // Fonction pour afficher/masquer le mot de passe
     if (togglePasswordBtn && adminPasswordInput) {
         togglePasswordBtn.addEventListener('click', () => {
             const type = adminPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -1726,7 +1678,6 @@
         }
     }
 
-    // ==================== GALERIE ====================
     const galleryImages = [
         "cliniquewendtoin/Im1.jpeg", "cliniquewendtoin/Im3.jpeg", "cliniquewendtoin/Im4.jpeg",
         "cliniquewendtoin/Im5.jpeg", "cliniquewendtoin/Im7.jpeg", "cliniquewendtoin/Im8.jpeg",
@@ -1751,7 +1702,6 @@
     if (closeImageModal) closeImageModal.addEventListener('click', () => { imageModal.style.display = 'none'; });
     window.addEventListener('click', (e) => { if (e.target === imageModal) imageModal.style.display = 'none'; });
 
-    // ==================== VIDÉOS ====================
     const allVideos = [
         { title: "Pr Gilbert BONKOUGOU - Maladie hémorroïdaire", desc: "Les hémorroïdes expliquées par le Pr Gilbert BONKOUGOU", url: "https://web.facebook.com/reel/645204957720787" },
         { title: "Unité de dialyse - Clinique WENDTOIN", desc: "Prise en charge des insuffisances rénales aiguës et chroniques", url: "https://web.facebook.com/reel/879902179764068" },
@@ -1785,7 +1735,6 @@
     if (showMoreBtn) showMoreBtn.addEventListener('click', () => { visibleVideos = Math.min(visibleVideos + 4, allVideos.length); displayVideos(); });
     displayVideos();
 
-    // ==================== ANIMATIONS SCROLL ====================
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -1799,7 +1748,6 @@
     
     window.addEventListener('scroll', () => { document.querySelector('header')?.classList.toggle('scrolled', window.scrollY > 50); });
     
-    // ==================== MENU MOBILE ====================
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.getElementById('navMenu');
     if (mobileBtn && navMenu) {
@@ -1808,7 +1756,6 @@
         document.addEventListener('click', (e) => { if (!mobileBtn.contains(e.target) && !navMenu.contains(e.target)) { navMenu.classList.remove('show'); if (mobileBtn) mobileBtn.innerHTML = '☰'; } });
     }
     
-    // ==================== COMPTEURS ====================
     function animateCounter(el, start, end, duration) { 
         let startTime = null; 
         el.innerText = start; 
@@ -1834,7 +1781,6 @@
     const statsContainerEl = document.querySelector('.stats-container'); 
     if (statsContainerEl) statObserver.observe(statsContainerEl);
     
-    // ==================== WHATSAPP ====================
     const whatsappForm = document.getElementById('whatsappForm');
     if (whatsappForm) {
         whatsappForm.addEventListener('submit', function(e) { 
@@ -1865,7 +1811,6 @@
 
     function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 
-    // Initialisation
     initSupabase();
 </script>
 </body>
